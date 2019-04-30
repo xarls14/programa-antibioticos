@@ -40,10 +40,7 @@
           <input type="hidden" id="id_paciente_oculto_id_antibiotico">
           </div>          
           </form>
-        </div>
-        
-        
-        
+        </div> 
     </div>
 
   </div>

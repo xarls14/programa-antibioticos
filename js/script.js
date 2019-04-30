@@ -14,6 +14,12 @@ function agregarPaciente(){
       document.getElementById("formCrearPaciente").reset();
       $("#antibioticos").empty();
       x = 1;
+      //notificación
+      alertify.success('Paciente ingresado correctamente.');
+    },
+    error: function(datastring){
+      $("#myModalNuevoPaciente").modal("hide");
+      alertify.error('Algo ocurrió y paciente no fue ingresado.');
     }
   });
 }
@@ -177,7 +183,7 @@ function obtenerDatosNuevaDiaTratamiento(id, id_tratamiento, id_antibiotico){
 }
 
 function validarFormNuevoDiaTratamiento(){
-  $('#formNuevoDiaTratamiento').validate({
+$('#formNuevoDiaTratamiento').validate({
   rules: {
     num_frasco: {
       required: true,
@@ -409,22 +415,20 @@ function nuevoDiaTratamiento(){
 
     // Update the details by requesting to the server using ajax
     $.post("../ajax/actualizarNuevoDiaTratamiento.php", {
-            id: id,
-            id_tratamiento: id_tratamiento,
-            id_antibiotico: id_antibiotico,
-            num_frasco: num_frasco_suma,
-            dias_tratamiento: num_dias_tratamiento_suma,
-            fecha: fecha_inicio_parseada,
-            
-
+          id: id,
+          id_tratamiento: id_tratamiento,
+          id_antibiotico: id_antibiotico,
+          num_frasco: num_frasco_suma,
+          dias_tratamiento: num_dias_tratamiento_suma,
+          fecha: fecha_inicio_parseada,
         },
         function (data, status) {
-            // hide modal popup
-            $("#myModalNuevoDiaTratamiento").modal("hide");
-            // reload Users by using readRecords();
-            actualizarTablaActivos();
-            limpiarNuevaDosisTratamiento();
-            
+          // hide modal popup
+          $("#myModalNuevoDiaTratamiento").modal("hide");
+          // reload Users by using readRecords();
+          actualizarTablaActivos();
+          limpiarNuevaDosisTratamiento();
+          alertify.success('Nueva dosis de tratamiento ingresado correctamente.');
         }
     );
 }
@@ -448,8 +452,8 @@ function agregarATB(){
   }, function(data, status){
     //cerramos el popup
     $("#myModalAgregarATB").modal("hide");
-    document.getElementById("formCrearATB").reset();
-    //limpiamos los campos
+    document.getElementById("formCrearATB").reset();//limpiamos los campos
+    alertify.success('Nuevo antibiótico ingresado correctamente al tratamiento existente.');
   });
 }
 
@@ -474,22 +478,22 @@ function abrirModalATB(id,id_tratamiento){
 //validar modal agregar antibiotico
 function validarFormAgregarATB(){
   $('#formCrearATB').validate({
-  rules: {
-    dosis: {
-      required: true,
-      maxlength: 10,
-    }
-  },
-  messages: {
-    dosis: {
-      required: 'Debe ingresar la dosis del antibiótico.',
-      maxlength: 'Debe ser un máximo de 10 caracteres.'
-    }
-  },    
-    submitHandler: function () {
-        agregarATB()
-    }
-  });      
+    rules: {
+      dosis: {
+        required: true,
+        maxlength: 10,
+      }
+    },
+    messages: {
+      dosis: {
+        required: 'Debe ingresar la dosis del antibiótico.',
+        maxlength: 'Debe ser un máximo de 10 caracteres.'
+      }
+    },    
+      submitHandler: function () {
+          agregarATB()
+      }
+    });      
 }
 /*-----------------------------------------------------------------------------*/
 
@@ -513,6 +517,7 @@ function cambioEstadoATB(){
             $("#myModalCambioEstadoATB").modal("hide");
             // reload Users by using readRecords();
             actualizarTablaActivos();
+            alertify.success('Estado de antibiótico cambiado correctamente.');
         }
     );
 }
@@ -556,7 +561,7 @@ function diagnosticarPaciente(){
     actualizarTablaActivos();
     document.getElementById("formDiagnosticarPaciente").reset();
     //limpiamos los campos
-
+    alertify.success('Diagnóstico del paciente ingresado correctamente.');
   });
 }
 
@@ -727,7 +732,7 @@ function observacionMedico(){
     actualizarTablaActivos();
     document.getElementById("formObservacionMedico").reset();
     //limpiamos los campos
-
+    alertify.success('Observación del paciente ingresada correctamente.');
   });
 }
 
@@ -838,6 +843,7 @@ function actualizarPaciente() {
             $("#myModalActualizarPaciente").modal("hide");
             // reload Users by using readRecords();
             actualizarTablaActivos();
+            alertify.success('Datos del paciente actualizados correctamente.');
         }
     );
 }
@@ -850,15 +856,23 @@ function actualizarPaciente() {
 function crearUsuario(){
 var datastring = $("#FormCrearUsuario").serialize();
 
-$.ajax({
-  type: "post",
-  url: "../ajax/crearUsuario.php",
-  data: datastring,
-  success: function(datastring){//no es ta pasando por success ya que la query arroja error en el codigo mysqli pero no asi en mysql workbench
-    $("#myModalCrearUsuario").modal("hide");
+  $.ajax({
+    type: "post",
+    url: "../ajax/crearUsuario.php",
+    data: datastring,
+    success: function(datastring){//no es ta pasando por success ya que la query arroja error en el codigo mysqli pero no asi en mysql workbench
+      $("#myModalCrearUsuario").modal("hide");
       document.getElementById("FormCrearUsuario").reset();
-    }
-});
+
+      //notificacion de que se ingreso bien el paciente
+      alertify.success('Usuario creado correctamente.');
+    },
+    error: function(datastring){
+      $("#myModalCrearUsuario").modal("hide");
+      alertify.error('Algo ocurrió y el usuario no se pudo crear.');
+    }  
+      
+  });
 }
 
 //validar formulario crear usuarios
@@ -1008,6 +1022,7 @@ function eliminarPaciente(id){
       },
       function (data,status){
         actualizarTablaActivos();
+        alertify.success('Antibiótico del paciente eliminado correctamente.');
       }
     );  
   }
@@ -1229,8 +1244,12 @@ function SubirPdf(){
     $("#myModalSubirPdf").modal("hide");
     actualizarTablaTratamientos();
     document.getElementById("formSubirPdf").reset();
-    }
-  });
+    alertify.success('PDF subido correctamente.');
+  },
+  error: function(data){
+    alertify.error('Algo ocurrió y el PDF no logró ser subido.');
+  }
+});
 
   /*var data = new FormData();
   data.append( 'fichero', $('#fichero')[0].files[0] ); //photo is the name and id of the <input type="file">

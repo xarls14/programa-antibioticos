@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="myModalActualizarTratamiento">
     <div class="modal-dialog modal-lg" style="width: 600px;">
       <div class="modal-content">
@@ -70,4 +69,3 @@
     </div>
   </div>
 </div>
-

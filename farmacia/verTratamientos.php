@@ -2,6 +2,7 @@
 session_start();
 
 include '../modal/modalNuevoATB.php';
+include '../modal/modalVerPdf.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){
@@ -72,6 +73,19 @@ tr.shown td.details-control {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 <!--JQuery DataTables plugin-->
+
+<!-----------------------alertas de js----------------------------->
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+<!-------------------------------termino de alertas de js------------------>
 
 <link rel="stylesheet" href="../css/tabla-pacientes.css">
 

@@ -53,6 +53,19 @@ tr.shown td.details-control {
 
 <!------------------------------------------------------------->
 
+<!-----------------------alertas de js----------------------------->
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+<!-------------------------------termino de alertas de js------------------>
+
 <!-- multi date picker --->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css">
 
@@ -109,12 +122,11 @@ tr.shown td.details-control {
 
 
 
+<!--<div style="margin-left: 50px; margin-bottom: 20px;"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalNuevoPaciente" data-backdrop="static" data-keyboard="false">Nuevo Paciente <i class="fas fa-user-plus"></i></button></div>-->
 
-<div style="margin-left: 50px; margin-bottom: 20px;"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalNuevoPaciente" data-backdrop="static" data-keyboard="false">Nuevo Paciente <i class="fas fa-user-plus"></i></button></div>
 
 <!--Tabla donde mostramos a los pacientes y sus datos-->
 <div>
-
     <h3 style="margin-bottom: 25px; width:95%; margin: 0 auto;">Lista de pacientes</h3>
     <div class="display" style="width:95%; margin: 0 auto; margin-top: 25px;"></div>
 </div>

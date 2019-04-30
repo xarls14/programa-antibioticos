@@ -34,6 +34,7 @@
                   <th>Médico tratante</th>                              
                   <!--<th>Observaciones</th>-->                  
                   <th>Nuevo ATB</th>
+                  <th>Ver PDF</th>
               </tr>
           </thead>';
 
@@ -50,7 +51,7 @@
                   <th>Diagnóstico</th>
                   <th>Médico tratante</th>                              
                   <!--<th>Observaciones</th>-->                  
-                  <!--<th>Nuevo ATB</th>-->
+                  <th>Ver PDF</th>
               </tr>
           </thead>';
 
@@ -67,7 +68,7 @@
                   <th>Diagnóstico</th>
                   <th>Médico tratante</th>                              
                   <!--<th>Observaciones</th>-->                  
-                  <th>Subir PDF</th>
+                  <th>Opciones PDF</th>
               </tr>
           </thead>';
 
@@ -171,8 +172,15 @@
                                 <span data-toggle="tooltip" data-placement="top"
                                   title="Agregar un antibiótico a este tratamiento."><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalAgregarATB" onclick="abrirModalATB('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-plus-circle"></i></button>
                                 </span>
-
                                </td>
+                               <td>
+                                <div>
+                                <span data-toggle="tooltip" data-placement="top"
+                                  title="Ver archivos pdf de este tratamiento."><button type="button" class="btn btn-success" data-toggle="modal" onclick="abrirModalVerPdf('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-file-pdf"></i></button>
+                                </span>
+                                </div>
+                               </td>
+
 
                            </tr>';
 
@@ -187,13 +195,16 @@
                                <td>'.$row['medico_tratante'].'</td> 
                                <!--<td>'.$row['observacion'].'</td>-->
 
-                               <!--<td>
+                               <td>
                                <div>
-                                <span data-toggle="tooltip" data-placement="top"
+                                <!--<span data-toggle="tooltip" data-placement="top"
                                   title="Diagnosticar a este paciente."><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalAgregarATB" onclick="abrirModalATB('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-plus-circle"></i></button>
+                                </span>-->
+                                <span data-toggle="tooltip" data-placement="top"
+                                  title="Ver archivos pdf de este tratamiento."><button type="button" class="btn btn-success" data-toggle="modal" onclick="abrirModalVerPdf('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-file-pdf"></i></button>
                                 </span>
 
-                               </td>-->
+                               </td>
 
                            </tr>';
                         }elseif ($_SESSION['areas_id_area'] == "3") {
@@ -229,15 +240,15 @@
            // Sí no se muestran los datos debemos colocar esto dependiendo del numero de columnas por lo que deberia ir un switchpreguntando si es admin o basico (farmacia, medicina y laboratorio)
             switch ($_SESSION['areas_id_area']) {//si es de farmacia
               case '1':
-                $data .= '<tr><td colspan="5">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="7">¡No se encontraron datos!</td></tr>';
                 break;  
 
               case '2':
-                $data .= '<tr><td colspan="5">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="6">¡No se encontraron datos!</td></tr>';
                 break;
                 
               case '3':
-                $data .= '<tr><td colspan="5">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="6">¡No se encontraron datos!</td></tr>';
                 break;    
             }
 

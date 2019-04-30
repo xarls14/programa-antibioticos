@@ -40,8 +40,6 @@
                   <th>N° Frascos</th>
                   <th>Estado</th>
                   <!--<th>Cultivo</th>-->
-                  <!--<th>Observaciones</th>-->
-                  <th>PDF</th>
                   <th>Opciones</th>
               </tr>
           </thead>';
@@ -64,8 +62,6 @@
                   <th>N° Frascos</th>
                   <th>Estado</th>
                   <!--<th>Cultivo</th>-->
-                  <!--<th>Observaciones</th>-->
-                  <th>PDF</th>
                   <th>Opciones</th>
               </tr>
           </thead>';
@@ -89,8 +85,6 @@
                   <th>N° Frascos</th>
                   <th>Estado</th>
                   <!--<th>Cultivo</th>-->
-                  <!--<th>Observaciones</th>-->
-                  <th>PDF</th>
                   <th>Opciones</th>
               </tr>
           </thead>';
@@ -247,8 +241,6 @@
 
                                <!--<td>'.$row['observacion'].'</td>-->
 
-                               <td><a target="blank" href="http://www.africau.edu/images/default/sample.pdf"><i style="width: 20px;height: 20px;" class="fas fa-file-pdf"></i></a></td>
-
                                <td>
                                <div>
                                 <span data-toggle="tooltip" data-placement="top" title="Agregar nueva dosis">
@@ -309,8 +301,6 @@
                                <!--<td></td>-->  
 
                                <!--<td>'.$row['observacion'].'</td>-->
-
-                               <td><a target="blank" href="http://www.africau.edu/images/default/sample.pdf"><i style="width: 20px;height: 20px;" class="fas fa-file-pdf"></i></a></td>
 
                                <td>
                                <div>
@@ -373,8 +363,6 @@
 
                                <!--<td>'.$row['observacion'].'</td>-->
 
-                               <td><a target="blank" href="http://www.africau.edu/images/default/sample.pdf"><i style="width: 20px;height: 20px;" class="fas fa-file-pdf"></i></a></td>
-
                                <td>
                                <div>
 
@@ -420,15 +408,15 @@
           }else{
             switch ($_SESSION['areas_id_area'] == "1") {//si es de farmacia
               case '1':
-                $data .= '<tr><td colspan="12">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="11">¡No se encontraron datos!</td></tr>';
                 break;
               
               case '2'://en caso de que sea medicina colocar en colspan el numero de columnas de medicina
-                $data .= '<tr><td colspan="11">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="12">¡No se encontraron datos!</td></tr>';
                 break;
 
               case '3'://en caso que sea laboratorio lo mismo pero para laboratorio
-                $data .= '<tr><td colspan="11">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="12">¡No se encontraron datos!</td></tr>';
                 break;  
             }
            
