@@ -273,7 +273,18 @@ function nuevoDiaTratamiento(){
     console.log('num de frasco: ' + num_frasco_suma);
     console.log('fecha: ' + fecha_inicio_parseada);
 
-
+    //validar cantidad de dias de tratamiento que lleva el paciente para poder notificar por medio de correo a los usuarios
+    if(num_dias_tratamiento_suma == 4 || num_dias_tratamiento_suma == 7){
+      $.post("../ajax/enviarCorreo.php", {
+        id: id,
+        id_tratamiento: id_tratamiento,
+        
+      },
+      function (data, status) {
+        //en este lugar no hacemos nada por el momento cuando el status sea correcto se enviara por post los datos y hara la funcion en php de mail
+      });  
+    }
+    
     
 
     /*lo de los frascos queda listo luego de los if comenzamos con lo de las fechas*/
