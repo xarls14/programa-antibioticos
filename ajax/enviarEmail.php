@@ -1,20 +1,84 @@
 <?php 
-$destinatario = "xarls_11@hotmail.com";
-// Asunto
-$asunto = "Email de prueba del Tutorial PHP 7";
-// Mensaje
- $mensaje = "Hola, este email es una prueba del Tutorial PHP 7. Los datos anexos al email son: <br><br>";
- // Cabeceras
- // Para enviar un correo HTML, debe establecerse la cabecera Content-type
-  $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-  $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-  // Cabeceras adicionales
-   $cabeceras .= 'To: TU NOMBRE <xarls_11@hotmail.com>' . "\r\n";
-   $cabeceras .= 'From: Tutorial PHP 7 <tutorial@tutorialphp.net>' . "\r\n";
-// Enviamos el email
+use PHPMailer\PHPMailer\PHPMailer;
+require '../src/PHPMailer.php';
+require '../src/SMTP.php';
+require '../src/OAuth.php';
+require '../src/Exception.php';
 
 
-mail($destinatario, $asunto, $mensaje, $cabeceras)
+$nombres = $_POST['nombres'];
+$apellidos = $_POST['apellidos'];
+$rut = $_POST['rut'];
+$sala_cama = $_POST['sala_cama'];
+$medico = $_POST['medico'];
+$antibiotico = $_POST['antibiotico'];
+$dias_tratamiento = $_POST['dias_tratamiento'];
 
+$mail = new PHPMailer;
 
+try {
+    $mail->isSMTP(); 
+    //$mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    //$mail->SMTPSecure = 'ssl';
+    $mail->Host = "mail.redsalud.gob.cl";
+    $mail->Port = 25;
+
+    $mail->Username = "carlos.henriquez@redsalud.gob.cl";
+    $mail->Password = "173446837";
+
+    $mail->From = "carlos.henriquez@redsalud.gob.cl";
+    $mail->FromName = "TIC - Programa Antibioticos";
+    $mail->Subject = "Notificacion paciente";
+    $mail->addAddress('carlos.henriquez@redsalud.gob.cl'); 
+    $mail->MsgHTML("<html>
+    <head>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+        text-align: left;   
+    }
+
+    th{
+        color: white;    
+        background-color: #0072C6;       
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2>Notificacion pacientes</h2>
+    <p>El paciente <b>".$nombres." ".$apellidos."</b> lleva ".$dias_tratamiento." dias de tratamiento con el antibiotico <b>".$antibiotico."</b></p>
+
+    
+    <table style=\"width:100%\">
+      <tr>
+        <th>Rut</th>
+        <th>Nombres</th>
+        <th>Apellidos</th> 
+        <th>Sala-Cama</th>
+        <th>Medico Tratante</th>
+        <th>ATB</th>
+      </tr>
+      <tr>
+        <td>".$rut."</td>
+        <td>".$nombres."</td>
+        <td>".$apellidos."</td>
+        <td>".$sala_cama."</td>
+        <td>".$medico."</td>
+        <td>".$antibiotico."</td>
+      </tr>
+    </table>
+    </body>
+    </html>");
+
+    $mail -> Send();
+    echo("El email se ha enviado con éxito");
+} catch (Exception $e) {
+    echo "El email no ha podido ser enviado: {$mail->ErrorInfo}";
+}
 ?>

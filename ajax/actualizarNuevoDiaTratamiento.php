@@ -42,6 +42,22 @@ if(isset($_POST))
         echo "Detalles de error: ".mysqli_error($link).".";
     } 
 
+    /*tercera query para traer datos de vuelta y poder manejarlos y enviarlos por post a la funcion de enviar email por php*/
+
+    $query3 = "SELECT *
+    FROM pacientes p
+    INNER JOIN tratamientos t ON p.id_paciente = t.pacientes_id_paciente
+    INNER JOIN antibioticos a ON t.id_tratamiento = a.tratamientos_id_tratamiento
+    
+    WHERE id_paciente = $id and id_tratamiento = $tratamiento_id and id_antibiotico = $antibiotico_id;";
+
+
+    $result = mysqli_query($link, $query3);    
+    if(!$result){
+        $flag = false;
+        echo "Detalles de error: ".mysqli_error($link).".";
+    } 
+
     /*$query = "UPDATE pacientes, muestras SET tipo_muestra = '$tipo_muestra', establecimiento_origen = 'HPL' , areas_id_area = '$unidad_origen', num_frasco = '$num_frasco' WHERE id_muestra = '$id'";*/
 
     /*$query = "UPDATE antibioticos SET tipo_muestra = '$tipo_muestra' WHERE id_antibiotico = '$id'";*/

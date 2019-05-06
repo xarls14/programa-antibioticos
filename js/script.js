@@ -273,14 +273,90 @@ function nuevoDiaTratamiento(){
     console.log('num de frasco: ' + num_frasco_suma);
     console.log('fecha: ' + fecha_inicio_parseada);
 
+    
+
+
     //validar cantidad de dias de tratamiento que lleva el paciente para poder notificar por medio de correo a los usuarios
-    //if(num_dias_tratamiento_suma == 4 || num_dias_tratamiento_suma == 7){
+    /*if(num_dias_tratamiento_suma == 4 || num_dias_tratamiento_suma == 7){
       $.post("../ajax/enviarEmail.php", {
       },
       function (data, status) {
         //en este lugar no hacemos nada por el momento cuando el status sea correcto se enviara por post los datos y hara la funcion en php de mail
       });  
-    //}
+    }*/
+
+     // Update the details by requesting to the server using ajax
+    $.post("../ajax/actualizarNuevoDiaTratamiento.php", {
+      id: id,
+      id_tratamiento: id_tratamiento,
+      id_antibiotico: id_antibiotico,
+      num_frasco: num_frasco_suma,
+      dias_tratamiento: num_dias_tratamiento_suma,
+      fecha: fecha_inicio_parseada,
+    },
+    function (data, status) {
+      // hide modal popup
+      $("#myModalNuevoDiaTratamiento").modal("hide");
+      // reload Users by using readRecords();
+      actualizarTablaActivos();
+      limpiarNuevaDosisTratamiento();
+      alertify.success('Nueva dosis de tratamiento ingresado correctamente.');
+      
+    });
+
+    switch(num_dias_tratamiento_suma){
+      case 4:
+        //llamado ajax para ir por los datos de los antibioticos
+        $.post("../ajax/leerDetallesNuevoDiaTratamiento.php",{
+          id: id,
+          id_tratamiento: id_tratamiento,
+          id_antibiotico: id_antibiotico,
+        },
+        function (data, status){
+          var datos = JSON.parse(data);
+          var diasTratamiento4 = 4;
+          $.post("../ajax/enviarEmail.php", {//llamado ajax para envio de correo
+            nombres: datos.nombres,
+            apellidos: datos.apellidos,
+            rut: datos.rut,
+            sala_cama: datos.sala_cama,
+            medico: datos.medico_tratante,
+            antibiotico: datos.nombre,
+            dias_tratamiento: diasTratamiento4,
+
+          },
+          function (data, status) {
+            //en este lugar no hacemos nada por el momento cuando el status sea correcto se enviara por post los datos y hara la funcion en php de mail
+          });
+        });
+        break;
+
+      case 7:
+        //llamado ajax para ir por los datos de los antibioticos
+        $.post("../ajax/leerDetallesNuevoDiaTratamiento.php",{
+          id: id,
+          id_tratamiento: id_tratamiento,
+          id_antibiotico: id_antibiotico,
+        },
+        function (data, status){
+          var datos = JSON.parse(data);
+          var diasTratamiento7 = 7;
+          $.post("../ajax/enviarEmail.php", {//llamado ajax para envio de correo
+            nombres: datos.nombres,
+            apellidos: datos.apellidos,
+            rut: datos.rut,
+            sala_cama: datos.sala_cama,
+            medico: datos.medico_tratante,
+            antibiotico: datos.nombre,
+            dias_tratamiento: diasTratamiento7,
+
+          },
+          function (data, status) {
+            //en este lugar no hacemos nada por el momento cuando el status sea correcto se enviara por post los datos y hara la funcion en php de mail
+          });
+        });
+        break;
+    }
     
     
 
@@ -420,25 +496,6 @@ function nuevoDiaTratamiento(){
       var dia_tratamiento_suma = dia_tratamiento_int + 1;
       console.log('dia de tratamiento nuevo ' + dia_tratamiento_suma);
     }*/
-
-    // Update the details by requesting to the server using ajax
-    /*$.post("../ajax/actualizarNuevoDiaTratamiento.php", {
-          id: id,
-          id_tratamiento: id_tratamiento,
-          id_antibiotico: id_antibiotico,
-          num_frasco: num_frasco_suma,
-          dias_tratamiento: num_dias_tratamiento_suma,
-          fecha: fecha_inicio_parseada,
-        },
-        function (data, status) {
-          // hide modal popup
-          $("#myModalNuevoDiaTratamiento").modal("hide");
-          // reload Users by using readRecords();
-          actualizarTablaActivos();
-          limpiarNuevaDosisTratamiento();
-          alertify.success('Nueva dosis de tratamiento ingresado correctamente.');
-        }
-    );*/
 }
 
 /*----------------------------------------------------------------------*/
