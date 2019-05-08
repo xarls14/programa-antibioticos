@@ -20,6 +20,26 @@
           </thead>';
           
              
+   }elseif($_SESSION['tipo_usuario'] == "Medico Basico"){
+    $data = '<table class="display table-hover" id="tablaPacientes" style="width:100%; margin: 0 auto;">
+    <thead>
+        <tr>
+            <!--<th style="height: 40px; width: 40px;"></th>-->
+            <th>Rut</th>
+            <th>Paciente</th>
+            <th>Sala - Cama</th>
+            <th>Diagnóstico</th>
+            <th>Antibiótico</th>
+            <th>Médico tratante</th>
+            <th>Dosis</th>
+            <th>Días ATB</th>
+            <th>N° Frascos</th>
+            <th>Estado</th>
+            <!--<th>Cultivo</th>-->
+            <th>Opciones</th>
+        </tr>
+    </thead>';
+
    }else{//entonces es basico
 
      //esta variable contendra codigo html y php de la tabla que se muestra en actualizarTabla()
@@ -208,6 +228,49 @@
                            </td>
                        </tr>
                        </tbody>';
+                    break;
+
+                    case 'Medico Basico'://solo debe mostrar informacion de los usuarios una especia de lista que muestre 
+                     
+                    $data .= '
+                       
+                    <tr>
+                        <td>'.$row['rut'].'</td>
+                        <td>'.$row['nombres'].' '.$row['apellidos'].'</td> 
+                        <td>'.$row['sala_cama'].'</td>  
+                        <td>'.$row['diagnostico'].'</td>
+                        <td>'.$row['nombre'].'</td> 
+                        <td>'.$row['medico_tratante'].'</td> 
+                        <td>'.$row['dosis'].'</td>';
+
+                        if ($row['dias_tratamiento'] == 0) {
+                          $data .= '<td><button style="width: 70px; height: 35px;" type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="obtenerDatosRangoFechas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')" disabled>
+                           dias <span class="badge badge-light">'.$row['dias_tratamiento'].'</span>
+                         </button></td>';
+                        }else{
+                           $data .= '<td><button style="width: 70px; height: 35px;" type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="obtenerDatosRangoFechas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                           dias <span class="badge badge-light">'.$row['dias_tratamiento'].'</span>
+                         </button></td>';
+                        }
+                        
+
+                        $data.= 
+                        '<td>'.$row['num_frasco'].'</td> 
+                        <td>'.$estadoAntibioticoBadge.'</td> 
+                        <!--<td></td>--> 
+
+                        <!--<td>'.$row['observacion'].'</td>-->
+
+                        <td>
+                        <div>
+                         
+
+                         <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
+                             <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                             <i class="fas fa-comments"></i></button>   
+                         </span>
+                        </td>  
+                    </tr>';
                     break;
 
    
@@ -406,6 +469,8 @@
           if($_SESSION['tipo_usuario'] == "Administrador"){
             $data .= '<tr><td colspan="5">¡No se encontraron datos!</td></tr>';
              
+          }elseif($_SESSION['tipo_usuario'] == "Medico Basico"){
+            $data .= '<tr><td colspan="11">¡No se encontraron datos!</td></tr>';
           }else{
             switch ($_SESSION['areas_id_area'] == "1") {//si es de farmacia
               case '1':
@@ -413,7 +478,7 @@
                 break;
               
               case '2'://en caso de que sea medicina colocar en colspan el numero de columnas de medicina
-                $data .= '<tr><td colspan="10">¡No se encontraron datos!</td></tr>';
+                $data .= '<tr><td colspan="11">¡No se encontraron datos!</td></tr>';
                 break;
 
               case '3'://en caso que sea laboratorio lo mismo pero para laboratorio

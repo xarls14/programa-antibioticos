@@ -18,6 +18,20 @@
               </tr>
           </thead>';
 
+   }elseif($_SESSION['tipo_usuario'] == "Medico Basico"){
+    $data = '<table class="display table-hover" id="tablaPacientes" style="width:100%; margin: 0 auto;">
+    <thead>
+        <tr>
+
+            <th>Rut</th>
+            <th>Paciente</th>
+            <th>Sala - Cama</th>
+            <th>Diagnóstico</th>
+            <th>Médico tratante</th>                              
+            <!--<th>Observaciones</th>-->                  
+            <th>Ver PDF</th>
+        </tr>
+    </thead>';
    }else{//entonces es basico
 
      //esta variable contendra codigo html y php de la tabla que se muestra en actualizarTabla()
@@ -92,6 +106,13 @@
                "SELECT rut, nombre, apellido, email, tipo_usuario, areas_id_area FROM usuarios 
                 ORDER BY id_usuario";
 
+   }elseif($_SESSION['tipo_usuario'] == "Medico Basico"){
+              $query = "SELECT *
+              FROM pacientes p
+              INNER JOIN tratamientos t ON p.id_paciente = t.pacientes_id_paciente
+
+              WHERE p.areas_id_area = 1
+              ORDER BY p.fecha_ingreso DESC;";
    }else{//si el usuario es basico
 
        //luego de saber si es administrador filtramos la consulta dependiendo del area a la que pertenece
@@ -148,7 +169,30 @@
 
                //preguntamos por el tipo de sesion que trae session y escribimos codigo html/php para cada tipo de usuario logueado (concatenado) 
                switch ($_SESSION['tipo_usuario']) {//tipo de usuario
+                    case 'Medico Basico':
+                    $data .= '
 
+                    <tr>
+                        <td>'.$row['rut'].'</td>
+                        <td>'.$row['nombres'].' '.$row['apellidos'].'</td> 
+                        <td>'.$row['sala_cama'].'</td>  
+                        <td>'.$row['diagnostico'].'</td>
+                        <td>'.$row['medico_tratante'].'</td> 
+                        <!--<td>'.$row['observacion'].'</td>-->
+
+                        <td>
+                        <div>
+                         <!--<span data-toggle="tooltip" data-placement="top"
+                           title="Diagnosticar a este paciente."><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalAgregarATB" onclick="abrirModalATB('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-plus-circle"></i></button>
+                         </span>-->
+                         <span data-toggle="tooltip" data-placement="top"
+                           title="Ver archivos pdf de este tratamiento."><button type="button" class="btn btn-success" data-toggle="modal" onclick="abrirModalVerPdf('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-file-pdf"></i></button>
+                         </span>
+
+                        </td>
+
+                    </tr>';
+                    break;
                     case 'Basico':
                        if($_SESSION['areas_id_area'] == "1"){//si el usuario es basico y del area de farmacia mostramos los pacientes de farmacia con un tratamiento activo
                            $data .= '

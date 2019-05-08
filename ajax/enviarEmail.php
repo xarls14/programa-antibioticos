@@ -30,7 +30,12 @@ try {
     $mail->From = "carlos.henriquez@redsalud.gob.cl";
     $mail->FromName = "TIC - Programa Antibioticos";
     $mail->Subject = "Notificacion paciente";
-    $mail->addAddress('carlos.henriquez@redsalud.gob.cl'); 
+
+    /*----------acá pondremos todos los destinatarios es decir todos los usuarios de medicina------------*/ 
+
+    $mail->addAddress('carlos.henriquez@redsalud.gob.cl'); //
+
+    /*--------------------------------------------------------------------------------------------------*/
     $mail->MsgHTML("<html>
     <head>
     <style>

@@ -2,7 +2,7 @@ body {
   background-color: #fafafa;
 }
  
-table#tablaPacientes{
+table#tablaPacientes, table#tablaUsuarios{
   color: #333;
   font-size: 14px;
   font-weight: 150;
@@ -19,18 +19,18 @@ table#tablaPacientes{
   padding: 0;
 }
 
-table#tablaPacientes td{
+table#tablaPacientes td, table#tablaUsuarios td{
   height: 50px;
   
 }
 
-table#tablaPacientes th.sorting_disabled{
+table#tablaPacientes th.sorting_disabled, table#tablaUsuarios th.sorting_disabled{
   background: #343a40;
   color: #fff;
   border: none;
 }
 
-table#tablaPacientes tr:hover:not(#muestra th) {background-color: rgba(1,1,1,.1);}
+table#tablaPacientes tr:hover:not(#muestra th), table#tablaUsuarios tr:hover:not(#muestra th) {background-color: rgba(1,1,1,.1);}
 
 
 input[type="button"] {

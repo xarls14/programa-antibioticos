@@ -931,6 +931,7 @@ var datastring = $("#FormCrearUsuario").serialize();
 
       //notificacion de que se ingreso bien el paciente
       alertify.success('Usuario creado correctamente.');
+      actualizarTablaUsuarios();
     },
     error: function(datastring){
       $("#myModalCrearUsuario").modal("hide");
@@ -1496,6 +1497,29 @@ function actualizarTablaSuspendidos(){
     $.get("../ajax/actualizarTablaSuspendidos.php", {}, function(data, status){
     $(".display").html(data);//leer datos ya lo tenemos con php
     var table = $('#tablaPacientes').DataTable( {
+         ordering: false,
+        stateSave: true,
+        "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            dom: 'Bfrtip',
+            buttons:[
+              'excel',
+              {
+                extend: 'pdfHtml5',
+                  orientation: 'landscape',
+                  pageSize: 'LEGAL',
+
+              }
+            ]
+    });   
+  });
+}
+
+function actualizarTablaUsuarios() {
+  $.get("../ajax/actualizarTablaUsuarios.php", {}, function(data, status){
+    $(".display").html(data);//leer datos ya lo tenemos con php
+    var table = $('#tablaUsuarios').DataTable( {
          ordering: false,
         stateSave: true,
         "language": {
