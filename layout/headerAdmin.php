@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="../administrador/prueba.php">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../administrador/inicio.php">Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,7 +22,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" data-toggle="modal" data-target="#myModalCrearUsuario" data-backdrop="static" data-keyboard="false" style="cursor: pointer;">Nuevo usuario</a>
-          <a class="dropdown-item">Listar usuarios</a>
+          <a class="dropdown-item" href="../administrador/inicio.php">Listar usuarios</a>
         </div>
       </li>
     </ul>

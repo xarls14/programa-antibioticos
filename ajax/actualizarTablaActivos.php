@@ -223,7 +223,6 @@
                     case 'Administrador'://solo debe mostrar informacion de los usuarios una especia de lista que muestre 
                      
                        $data .= '
-                       <tbody>
                        <tr>
                            <td>'.$row['rut'].'</td>
                            <td>'.$row['nombre'].' '.$row['apellido'].'</td> 
@@ -236,14 +235,13 @@
                                  <button onclick="eliminarPaciente('.$row['id_usuario'].')" type="button" class="btn btn-danger"><span><i class="fas fa-trash-alt"></i></span></button>
                                </div>
                            </td>
-                       </tr>
-                       </tbody>';
+                       </tr>';
                     break;
 
                     case 'Medico Basico'://solo debe mostrar informacion de los usuarios una especia de lista que muestre 
                      
                     $data .= '
-                    <tbody>   
+                       
                     <tr>
                         <td>'.$row['rut'].'</td>
                         <td>'.$row['nombres'].' '.$row['apellidos'].'</td> 
@@ -278,8 +276,7 @@
                              <i class="fas fa-comments"></i></button>   
                          </span>
                         </td>        
-                    </tr>
-                    </tbody>';
+                    </tr>';
                     break;
 
    

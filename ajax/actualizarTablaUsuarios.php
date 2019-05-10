@@ -8,16 +8,17 @@
 
    if($_SESSION['tipo_usuario'] == "Administrador"){
       $data = '<table id="tablaUsuarios" class="display table-hover"  style="width:100%; margin: 0 auto;">
-                <thead>
-                    <tr>
-                        <!--<th style="height: 40px; width: 40px;"></th>-->
-                        <th>Usuario</th>
-                        <th>Rut</th>
-                        <th>Email</th>
-                        <th>Tipo usuario</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>';          
+        <thead>
+            <tr>
+                <!--<th style="height: 40px; width: 40px;"></th>-->
+                <th>Usuario</th>
+                <th>Rut</th>
+                <th>Email</th>
+                <th>Tipo usuario</th>
+                <th>Unidad</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>';          
    }
    
    
@@ -53,9 +54,23 @@
        {
            $number = 1;
            
-
+            //formateamos la unidad para mostrarla en pantalla como unidad y no como numero
            while($row = mysqli_fetch_assoc($result))
            {
+            switch ($row['areas_id_area']){
+                case '1':
+                $row['areas_id_area'] = 'Farmacia';
+                break;
+                
+                case '2':
+                $row['areas_id_area'] = 'Medicina';
+                break;
+
+                case '3':
+                $row['areas_id_area'] = 'Laboratorio';
+                break;
+              }    
+
               //convertir nombres porque uno es de usuarios y el otro es de antibioticos
 
               //fecha 
@@ -71,18 +86,27 @@
                     case 'Administrador'://solo debe mostrar informacion de los usuarios una especia de lista que muestre 
                      
                        $data .= '
-                       <tbody>
                         <tr>
                             <td>'.$row['nombre'].' '.$row['apellido'].'</td>
                             <td>'.$row['rut'].'</td>                            
                             <td>'.$row['email'].'</td>
                             <td>'.$row['tipo_usuario'].'</td>
-                            
+                            <td>'.$row['areas_id_area'].'</td>
+
                             <td id="botonesTabla">
-                                
+                                <span data-toggle="tooltip" data-placement="top"
+                                    title="Editar datos usuario">
+                                    <button data-backdrop="static" data-keyboard="false" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalActualizarUsuario" onclick="obtenerDatosUsuario('.$row['id_usuario'].')">
+                                    <i class="fas fa-pen-square"></i>
+                                    </button>
+                                </span>
+
+                                <span data-toggle="tooltip" data-placement="top" title="Eliminar usuario">
+                                    <button type="button" class="btn btn-danger" onclick="eliminarUsuario('.$row['id_usuario'].')">
+                                    <i class="fas fa-trash-alt"></i></button>   
+                                </span>
                             </td>
-                        </tr>
-                       </tbody>';
+                        </tr>';
                     break;
                }    
            }
@@ -90,7 +114,7 @@
 
            // Sí no se muestran los datos debemos colocar esto dependiendo del numero de columnas por lo que deberia ir un switchpreguntando si es admin o basico (farmacia, medicina y laboratorio)
           if($_SESSION['tipo_usuario'] == "Administrador"){
-            $data .= '<tr><td colspan="5">¡No se encontraron datos!</td></tr>';
+            $data .= '<tr><td colspan="6">¡No se encontraron datos!</td></tr>';
              
           }
        }

@@ -849,6 +849,8 @@ function validarFormObservacionMedico(){
 /*------------------actualizar datos-----------------*/
 
 //obtenemos datos de los usuarios para luego modificarlos (Update)
+
+
 function obtenerDatosPacientes(id,id_tratamiento,id_antibiotico){
   //agregamos el id del usuario para ocuparlo luego
   $("#id_paciente_oculto_id_paciente").val(id);
@@ -913,8 +915,35 @@ function actualizarPaciente() {
     );
 }
 
-/*---------------------------------------------------------------------*/
+/*-------------------------Actualizar datos de usuarios ---------------------------------*/
 
+function obtenerDatosUsuario(id){
+  //agregamos el id del usuario para ocuparlo luego
+  $("#id_paciente_oculto_id_usuario").val(id);
+  
+
+  $.post("../ajax/leerDetallesUsuario.php",{
+    id: id,
+  },
+  function (data, status){
+    //parse datos json
+    var usuario = JSON.parse(data);
+    //recuperamos datos del usuario y ponemos en modal
+    $("#actualizar_nombre").val(usuario.nombre);
+    $("#actualizar_apellido").val(usuario.apellido);
+    $("#actualizar_rut").val(usuario.rut);
+    $("#actualizar_selectUsuario").val(usuario.tipo_usuario);
+    $("#actualizar_email").val(usuario.email);
+
+  }); 
+  //mostramos modal
+  $("#myModalActualizarUsuario").modal("show");
+}
+
+
+
+
+/*-------------------------------------------------------------------------------------------*/
 
 
 /*------------------crear usuarios-------------------*/
@@ -1095,6 +1124,23 @@ function eliminarPaciente(id){
 }
 
 /*-----------------------------------------------------------------------*/
+
+/*eliminar usuarios*/
+function eliminarUsuario(id){
+  var conf = confirm("¿Está seguro que desea eliminar el usuario seleccionado?");
+  if(conf == true){
+    $.post("../ajax/eliminarUsuario.php",{
+        id: id
+      },
+      function (data,status){
+        actualizarTablaUsuarios();
+        alertify.success('Usuario eliminado correctamente.');
+      }
+    );  
+  }
+}
+
+
 
 /*data tables configuracion para tablas VER TABLAS PACIENTES CON ID #muestraPacientes 
 si id esta repetido se produce un warning que no afecta el funcionamiento pero que arroja un alert*/

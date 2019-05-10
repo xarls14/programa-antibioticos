@@ -2,6 +2,7 @@
 session_start();
 
 include '../modal/modalCrearUsuario.php';
+include '../modal/modalActualizarUsuario.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){
