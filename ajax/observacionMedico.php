@@ -25,7 +25,7 @@ if(isset($_POST))
     /*comprobado que se puede agregar trazabilidad y cambiar el estado*/
     
     $query = "INSERT INTO observaciones(observacion, fecha_observacion, medico_observacion, antibioticos_id_antibiotico, antibioticos_tratamientos_id_tratamiento)
-            VALUES('$observacion_medico', DATE_ADD(NOW(), INTERVAL -1 HOUR), '$medico_observacion' , '$antibiotico_id', '$tratamiento_id')
+            VALUES('$observacion_medico', NOW(), '$medico_observacion' , '$antibiotico_id', '$tratamiento_id')
             ";
 
 

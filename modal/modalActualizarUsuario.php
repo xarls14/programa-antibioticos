@@ -58,7 +58,7 @@
             </div>
             
             <div class="modal-footer">
-              <button type="submit" name="submit" id="submit" class="btn btn-primary">Actualizar Usuario</button>
+              <button type="submit" name="submit" id="submit" class="btn btn-primary">Editar usuario</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
               <input type="hidden" id="id_paciente_oculto_id_usuario">
 

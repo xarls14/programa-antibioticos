@@ -254,7 +254,6 @@ function nuevoDiaTratamiento(){
 
     /*metodo getdates multidatepicker*/
     var fecha_string = $('#fecha_tratamiento').multiDatesPicker('getDates');//metodo que retorna la fecha seleccionada en string
-    console.log(fecha_string);//formato 16-04-2019
 
     fecha_string = fecha_string.toString();//parseo a string
 
@@ -268,14 +267,7 @@ function nuevoDiaTratamiento(){
     var anio = dividirFecha_inicio[2]; 
 
     var fecha_inicio_parseada = anio + '/' + mes + '/' + dia; //fecha que se ingreso y que se parseo para ponerla en la base
-    
-    console.log('dias de tratamiento: ' + num_dias_tratamiento_suma);
-    console.log('num de frasco: ' + num_frasco_suma);
-    console.log('fecha: ' + fecha_inicio_parseada);
-
-    
-
-
+  
     //validar cantidad de dias de tratamiento que lleva el paciente para poder notificar por medio de correo a los usuarios
     /*if(num_dias_tratamiento_suma == 4 || num_dias_tratamiento_suma == 7){
       $.post("../ajax/enviarEmail.php", {
@@ -357,145 +349,6 @@ function nuevoDiaTratamiento(){
         });
         break;
     }
-    
-    
-
-    /*lo de los frascos queda listo luego de los if comenzamos con lo de las fechas*/
-
-    /*if (fecha_inicio == '' && fecha_termino == '') {//si fecha inicio y termino son vacias es decir la primera vez que se crea una dosis
-      
-      //fecha actual en caso de ser vacia
-      fecha_inicio = new Date();
-      
-      //sacamos fecha 
-     
-      var nueva_fecha_inicio = Date.now();//fecha inicio actual en string
-
-
-      var sumar_dia = 24*60*60*1000; //un dia en milisegundos
-
-
-      //alert(nueva_fecha_inicio);//se imprime la hora actual pero es un string
-      console.log('fecha inicio : ' + nueva_fecha_inicio);
-
-      fecha_termino = nueva_fecha_inicio + sumar_dia; //sumamos el dia a fecha termino 
-
-      console.log('fecha inicio : ' + fecha_termino);
-
-      //transformamos la variable en epoch a fecha
-      var fecha_inicio_milisegundos = new Date(nueva_fecha_inicio).getTime();
-      var fecha_termino_milisegundos  = new Date(fecha_termino).getTime();
-
-      var fecha_inicio_parseada = new Date(fecha_inicio_milisegundos);
-      var fecha_termino_parseada = new Date(fecha_termino_milisegundos);
-  
-      console.log('fecha inicio formateada : ' + fecha_inicio_parseada);
-      console.log('fecha termino formateada : ' + fecha_termino_parseada);
-
-      
-      //opciones de fecha para ponerla en chileno
-      var options = {
-        year: 'numeric', month: 'numeric', day: 'numeric',
-      };
-
-      //formateamos fecha a chileno o formato local
-      var fecha_local_inicio = fecha_inicio_parseada.toLocaleDateString('en', options); // 10/29/2013
-      var fecha_local_termino = fecha_termino_parseada.toLocaleDateString('en', options); // 10/29/2013
-
-      console.log('fecha inicio formateada : ' + fecha_local_inicio);
-      console.log('fecha termino formateada : ' + fecha_local_termino);
-
-      //-------------formato fecha mm-dd-yyyy a yyyy-mm-dd para ingresarla a base de datos ---------------------
-
-      var fechaInicioYYYYMMDD = fecha_local_inicio.split("/").reverse();
-      var tmpFechaInicio = fechaInicioYYYYMMDD[2];
-      fechaInicioYYYYMMDD[2] = fechaInicioYYYYMMDD[1];
-      fechaInicioYYYYMMDD[1] = tmpFechaInicio;
-      fechaInicioYYYYMMDD = fechaInicioYYYYMMDD.join("/");
-      fechaInicioYYYYMMDD = fechaInicioYYYYMMDD.replace('///',"-");
-      console.log('fecha inicio formato yyyy-mm-dd: ' + fechaInicioYYYYMMDD);
-
-      var fechaTerminoYYYYMMDD = fecha_local_termino.split("/").reverse();
-      var tmpFechaTermino = fechaTerminoYYYYMMDD[2];
-      fechaTerminoYYYYMMDD[2] = fechaTerminoYYYYMMDD[1];
-      fechaTerminoYYYYMMDD[1] = tmpFechaTermino;
-      fechaTerminoYYYYMMDD = fechaTerminoYYYYMMDD.join("/");
-      fechaTerminoYYYYMMDD = fechaTerminoYYYYMMDD.replace('///',"-");
-      console.log('fecha termino formato yyyy-mm-dd: ' +fechaTerminoYYYYMMDD);
-
-      /*---------------------------------------------------------------------------------------*/
-
-      /*var dia_tratamiento_suma = Math.round((fecha_termino_milisegundos-fecha_inicio_milisegundos)/(24*60*60*1000));
-      console.log('dia tratamiento suma : ' + dia_tratamiento_suma);
-
-    }else{
-      
-
-      var sumar_dia = 24*60*60*1000;
-
-      //debemos obtener el dato que viene de dias de tratamiento y sumarle la diferencia entre fechas luego enviarla por post
-      var dia_tratamiento = $("#id_paciente_oculto_dias_tratamiento").val();
-      //lo transformamos a entero
-      var dia_tratamiento_int = parseInt(dia_tratamiento);
-      console.log('dia de tratamiento que viene de base : ' + dia_tratamiento_int);
-
-
-
-
-      var fecha_inicio_milisegundos = Date.parse(fecha_inicio) + 14400000;
-      console.log('fecha de inicio en milisegundos :' + fecha_inicio_milisegundos);
-      var fecha_termino_milisegundos = Date.parse(fecha_termino) + 14400000;
-      console.log('fecha de termino en milisegundos :' + fecha_termino_milisegundos);
-
-      var nueva_fecha_termino_milisegundos = fecha_termino_milisegundos + sumar_dia;//fecha termino mas un dia en epoch
-      console.log('fecha termino mas un dia : ' + nueva_fecha_termino_milisegundos);
-
-      //transformamos la variable en epoch a fecha
-      var fecha_ini = new Date(fecha_inicio_milisegundos).getTime();
-      var fecha_term  = new Date(fecha_termino_milisegundos).getTime();//
-      var fecha_inicio_parseada = new Date(fecha_ini);//fecha inicio en date constante
-      var fecha_termino_parseada = new Date(fecha_term);
-
-      console.log('fecha de inicio date :' + fecha_inicio_parseada);
-      console.log('fecha de termino date :' + fecha_termino_parseada);
-
-      var nueva_fecha_ter = new Date(nueva_fecha_termino_milisegundos).getTime();
-      var fecha_termino_sumado_dia = new Date(nueva_fecha_ter);//fecha mas un dia en date
-      console.log('fecha de termino date mas un dia :' + fecha_termino_sumado_dia);
-
-      //opciones de fecha para ponerla en chileno
-      var options = {
-        year: 'numeric', month: 'numeric', day: 'numeric',
-      };
-
-      //formateamos fecha a chileno o formato local
-      var fecha_local_inicio = fecha_inicio_parseada.toLocaleDateString('en', options); // 10/29/2013
-      var fecha_local_termino = fecha_termino_sumado_dia.toLocaleDateString('en', options); // 10/29/2013
-
-      console.log('fecha de inicio date formato local :' + fecha_local_inicio);
-      console.log('fecha de termino date formato local :' + fecha_local_termino);
-
-      //-------------formato fecha mm-dd-yyyy a yyyy-mm-dd para ingresarla a base de datos ---------------------
-
-      var fechaInicioYYYYMMDD = fecha_local_inicio.split("/").reverse();
-      var tmpFechaInicio = fechaInicioYYYYMMDD[2];
-      fechaInicioYYYYMMDD[2] = fechaInicioYYYYMMDD[1];
-      fechaInicioYYYYMMDD[1] = tmpFechaInicio;
-      fechaInicioYYYYMMDD = fechaInicioYYYYMMDD.join("/");
-      fechaInicioYYYYMMDD = fechaInicioYYYYMMDD.replace('///',"-");
-      console.log('fecha de inicio formato yyyy-mm-dd : ' + fechaInicioYYYYMMDD);
-
-      var fechaTerminoYYYYMMDD = fecha_local_termino.split("/").reverse();
-      var tmpFechaTermino = fechaTerminoYYYYMMDD[2];
-      fechaTerminoYYYYMMDD[2] = fechaTerminoYYYYMMDD[1];
-      fechaTerminoYYYYMMDD[1] = tmpFechaTermino;
-      fechaTerminoYYYYMMDD = fechaTerminoYYYYMMDD.join("/");
-      fechaTerminoYYYYMMDD = fechaTerminoYYYYMMDD.replace('///',"-");
-      console.log('fecha de termino formato yyyy-mm-dd : ' + fechaTerminoYYYYMMDD);
-
-      var dia_tratamiento_suma = dia_tratamiento_int + 1;
-      console.log('dia de tratamiento nuevo ' + dia_tratamiento_suma);
-    }*/
 }
 
 /*----------------------------------------------------------------------*/
@@ -696,24 +549,29 @@ function abrirModalVerObservaciones(id,id_tratamiento,id_antibiotico){
       $('#tablaDescripciones tbody').append('<tr><td colspan="4" style="text-align: center;">¡No se encontraron datos!</td></tr>');
     }
 
-
-
     var count = Object.keys(observaciones).length;
 
-    console.log(count);
-    
     for (var i = 0; i < count; i++) {
+
+    //transformar datetime a formato chileno  
+    var datetime = observaciones[i].fecha_observacion;//acedemos a la fecha
+    var fecha = datetime.split(" ");//separamos por espacios fecha en [0] y horas en [1]
+    var date = fecha[0];
+    var hora = fecha[1];
+    var fechaYYYYMMDD = date.split('-');
+    var fecha_chilena = fechaYYYYMMDD[2] + "-" + fechaYYYYMMDD[1] + "-" + fechaYYYYMMDD[0];
+    //concatenamos con la hora al final
+    var datetimeChileno = fecha_chilena + " " + hora;
+
     num = i+1;
     $('#tablaDescripciones tbody').append('<tr><td>'+ num + '</td><td>'
                                           + observaciones[i].observacion + '</td><td>' 
                                           + observaciones[i].medico_observacion + '</td><td>'
-                                          + observaciones[i].fecha_observacion + '</td></tr>');
+                                          + datetimeChileno + '</td></tr>');
 
-      console.log(observaciones[i].observacion + ' ' + observaciones[i].medico_observacion + ' ' + observaciones[i].fecha_observacion);
-
-      }
+    }
       
-      //$('#tablaDescripciones tbody').append('<tr><td colspan="4">¡No se encontraron datos!</td></tr>');
+    //$('#tablaDescripciones tbody').append('<tr><td colspan="4">¡No se encontraron datos!</td></tr>');
     
 
     
@@ -741,8 +599,6 @@ function abrirModalVerPdf(id,id_tratamiento){
   function (data, status){
     //parse datos json
     var pdf = JSON.parse(data);
-    
-    console.log(pdf);
 
     //probando validacion para que no muestre datos 
     if (pdf.status == 200) {
@@ -752,18 +608,27 @@ function abrirModalVerPdf(id,id_tratamiento){
 
 
     var count = Object.keys(pdf).length;
-
-    console.log(count);
     
     for (var i = 0; i < count; i++) {
-    num = i+1;
-    $('#tablaPdf tbody').append('<tr><td>'+ num + '</td><td>'
-                                          + pdf[i].descripcion + '</td><td>' 
-                                          + pdf[i].fecha_pdf + '</td><td>'
-                                          + '<a href="../pdf/'+ pdf[i].nombre_archivo +'" target="_blank">'+ pdf[i].nombre_archivo +'</a></td><td>'
-                                          + '<i class="fas fa-check-circle"></i></td></tr>');
 
-      }
+      var datetime = pdf[i].fecha_pdf;//acedemos a la fecha
+      var fecha = datetime.split(" ");//separamos por espacios fecha en [0] y horas en [1]
+      //var hora = datetime.slice(10,19);
+      var date = fecha[0];
+      var hora = fecha[1];
+      var fechaYYYYMMDD = date.split('-');
+      var fecha_chilena = fechaYYYYMMDD[2] + "-" + fechaYYYYMMDD[1] + "-" + fechaYYYYMMDD[0];
+      //concatenamos con la hora al final
+      var datetimeChileno = fecha_chilena + " " + hora;
+      
+      num = i+1;
+      $('#tablaPdf tbody').append('<tr><td>'+ num + '</td><td>'
+                                            + pdf[i].descripcion + '</td><td>' 
+                                            + datetimeChileno + '</td><td>'
+                                            + '<a href="../pdf/'+ pdf[i].nombre_archivo +'" target="_blank">'+ pdf[i].nombre_archivo +'</a></td><td>'
+                                            + '<i class="fas fa-check-circle"></i></td></tr>');
+
+    }
       
       //$('#tablaDescripciones tbody').append('<tr><td colspan="4">¡No se encontraron datos!</td></tr>');
     
@@ -931,7 +796,7 @@ function obtenerDatosUsuario(id){
     //recuperamos datos del usuario y ponemos en modal
     $("#actualizar_nombre").val(usuario.nombre);
     $("#actualizar_apellido").val(usuario.apellido);
-    $("#actualizar_rut").val(usuario.rut);
+    $("#actualizar_usuario_rut").val(usuario.rut);
     $("#actualizar_selectUsuario").val(usuario.tipo_usuario);
     $("#actualizar_email").val(usuario.email);
 
@@ -1204,109 +1069,18 @@ function obtenerDatosRangoFechas(id, id_tratamiento, id_antibiotico){
     var count = Object.keys(antibiotico).length;
 
 
-    //console.log(antibiotico[0].fecha);// de esta manera accedemos al primer elemento del array antibiotico fecha[0]
-    console.log('contador objetos en array: ' + count);//obtenemos el largo del array 
 
     //debemos recorrer el arreglo para obtener las fechas disponibles y guardarlas en una variable
 
     for (var i = 0; i < count; i++) {
       var fecha = [];
       fecha[i] = antibiotico[i].fecha;
-
-
-
-      console.log(fecha[i]);
     }
 
 
     for (var i = 0; i < count; i++) {
       $('#daterange').multiDatesPicker('addDates', (antibiotico[i].fecha));
     }
-
-
-
-
-    //formato yyyy-mm-dd
-    //var fecha_inicio = antibiotico.fecha_inicio;
-    //var fecha_termino = antibiotico.fecha_termino;
-
-    //debemos transformarla a dd-mm-yyyy
-
-    /*var dividirFecha_inicio = fecha_inicio.split('-');
-    if(dividirFecha_inicio.count == 0){
-        return null;
-    }
-
-    var anio = dividirFecha_inicio[0];
-    var mes = dividirFecha_inicio[1];
-    var dia = dividirFecha_inicio[2]; 
-
-    var fecha_inicio_parseada = dia + '/' + mes + '/' + anio;
-    console.log(fecha_inicio_parseada);
-
-    var dividirFecha_termino = fecha_termino.split('-');
-    if(dividirFecha_termino.count == 0){
-        return null;
-    }
-
-    var anio = dividirFecha_termino[0];
-    var mes = dividirFecha_termino[1];
-    var dia = dividirFecha_termino[2]; 
-
-    var fecha_termino_parseada = dia + '/' + mes + '/' + anio;
-    console.log(fecha_termino_parseada);*/
-
-
-
-
-    /*$('input[name="daterange"]').daterangepicker({
-    "startDate": fecha_inicio_parseada,
-    "endDate": fecha_termino_parseada,
-    "autoApply":  true,
-    "linkedCalendars": false,
-    "locale": {
-        "format": "DD/MM/YYYY",
-        "separator": " - ",
-        "applyLabel": "Aplicar",
-        "cancelLabel": "Cancelar",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": [
-            "Do",
-            "Lu",
-            "Ma",
-            "Mi",
-            "Ju",
-            "Vi",
-            "Sa"
-        ],
-        "monthNames": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
-        ],
-        "firstDay": 1
-    },
-    opens: 'center',
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });*/
-
-    //$("#daterange").val(fecha_inicio + ' - ' + fecha_termino);
-    //document.getElementById("daterange").value = fecha_inicio + ' - ' + fecha_termino;
-    
-
   });
   //mostramos modal
   $("#myModalVerFechaTratamiento").modal("show");

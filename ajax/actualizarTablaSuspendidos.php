@@ -305,7 +305,7 @@
 
                                <td>
                                <div>
-                                <span data-toggle="tooltip" data-placement="top" title="Agregar nueva dosis">
+                                <span data-toggle="tooltip" data-placement="top" title="Agregar nueva día de tratamiento">
                                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalNuevoDiaTratamiento" data-backdrop="static" data-keyboard="false">
                                   <i class="fas fa-pills"></i></button>   
                                 </span> 
@@ -314,10 +314,10 @@
                                   title="Editar datos tratamiento"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalActualizarPaciente" onclick="obtenerDatosPacientes('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-pen-square"></i></button>
                                 </span>
 
-                                <span data-toggle="tooltip" data-placement="top" title="Eliminar tratamiento">
+                                <!--<span data-toggle="tooltip" data-placement="top" title="Eliminar tratamiento">
                                     <button type="button" class="btn btn-danger" onclick="eliminarPaciente('.$row['id_antibiotico'].')">
                                     <i class="fas fa-trash-alt"></i></button>   
-                                </span> 
+                                </span>--> 
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
                                     <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">

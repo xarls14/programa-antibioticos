@@ -18,15 +18,9 @@ if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){
 
 <title>Administrador</title>
 
-<style type="text/css">
-	   td.details-control {
-    background: url('../resources/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.details-control {
-    background: url('../resources/details_close.png') no-repeat center center;
-}
-</style>
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico" />
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,6 +69,7 @@ tr.shown td.details-control {
 <link href="../jquery-ui.multidatespicker.css" rel="stylesheet">
 <!------------------------>
 
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -108,8 +103,6 @@ tr.shown td.details-control {
 <!--JQuery DataTables plugin-->
 
 <link rel="stylesheet" href="../css/tabla-pacientes.css">
-
-<link rel="icon" type="image/ico" href="../images/icons/favicon.ico"/>
 
 <script type="text/javascript" src="../js/script.js"></script>
 
