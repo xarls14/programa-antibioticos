@@ -32,12 +32,16 @@
 
             <!--Rut -->
             <div class="row">
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-12">
                 <label>Rut</label>
                 <input placeholder="Ingresa rut" id="actualizar_usuario_rut" name="actualizar_usuario_rut" class="form-control" data-validation-engine="validate[required]"  maxlength="12">
               </div>
-              <!--Tipo Usuario-->
-              <div class="form-group col-sm-6">
+              
+            </div>         
+            
+            <div class="row">
+                <!--Tipo Usuario-->
+                <div class="form-group col-sm-6">
                   <label>Tipo Usuario</label>
                   <select class="form-control" type="select" id="actualizar_selectUsuario" name="actualizar_selectUsuario">
                     <option selected>Elegir tipo de usuario...</option>
@@ -45,9 +49,18 @@
                     <option value="Medico Basico">Médico Básico</option>
                     <option value="Basico">Básico</option>
                   </select>
-              </div>
-            </div>         
-            
+                </div>
+
+                <div class="form-group col-sm-6">
+                  <label>Unidad usuario</label>
+                  <select class="form-control" type="select" id="actualizar_selectUnidad" name="actualizar_selectUnidad" placeholder="Seleccione unidad">
+                    <option selected>Elegir unidad...</option>
+                    <option value="1">Farmacia</option>
+                    <option value="2">Medicina</option>
+                    <option value="3">Laboratorio</option>
+                  </select>
+                </div>
+            </div>
              
             <!--Email-->
             <div class="row">
@@ -58,7 +71,7 @@
             </div>
             
             <div class="modal-footer">
-              <button type="submit" name="submit" id="submit" class="btn btn-primary">Editar usuario</button>
+              <button type="submit" name="submit" id="submit" class="btn btn-primary" onclick="actualizarUsuario()">Editar usuario</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
               <input type="hidden" id="id_paciente_oculto_id_usuario">
 

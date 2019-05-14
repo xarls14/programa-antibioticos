@@ -10,18 +10,18 @@ if(isset($_POST))
     $id = mysqli_real_escape_string($link, $_POST["id"]); 
 
 
-    $nombre = mysqli_real_escape_string($link, $_POST["nombres"]);  
-    $apellido = mysqli_real_escape_string($link, $_POST["apellidos"]); 
+    $nombre = mysqli_real_escape_string($link, $_POST["nombre"]);  
+    $apellido = mysqli_real_escape_string($link, $_POST["apellido"]); 
     $rut = mysqli_real_escape_string($link, $_POST["rut"]);  
     $email = mysqli_real_escape_string($link, $_POST["email"]); 
-    $dosis = mysqli_real_escape_string($link, $_POST["dosis"]);  
-    $antibiotico = mysqli_real_escape_string($link, $_POST["nombre"]); 
+    $areas_id_area = mysqli_real_escape_string($link, $_POST["areas_id_area"]);  
+    $tipo_usuario = mysqli_real_escape_string($link, $_POST["tipo_usuario"]); 
  
     /*comprobado que se puede agregar trazabilidad y cambiar el estado*/
     
     $query = "UPDATE usuarios
-            SET nombres = '$nombres', apellidos = '$apellidos', rut = '$rut', sala_cama = '$sala_cama', dosis = '$dosis', nombre = '$antibiotico' 
-            WHERE id_paciente = '$id' 
+            SET nombre = '$nombre', apellido = '$apellido', rut = '$rut', email = '$email', areas_id_area = '$areas_id_area', tipo_usuario = '$tipo_usuario' 
+            WHERE id_usuario = '$id' 
             ";
 
     /*$query = "UPDATE pacientes, muestras SET tipo_muestra = '$tipo_muestra', establecimiento_origen = 'HPL' , areas_id_area = '$unidad_origen', num_frasco = '$num_frasco' WHERE id_muestra = '$id'";*/
@@ -31,6 +31,6 @@ if(isset($_POST))
     if (!$result = mysqli_query($link, $query)) {
         exit(mysqli_error($link));
     }
-    echo "Antibiotico actualizado correctamente.";
+    echo "Usuario actualizado correctamente.";
 
 }

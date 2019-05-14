@@ -44,6 +44,7 @@
               <div class="form-group col-sm-6">
                   <label>Tipo Usuario</label>
                   <select class="form-control" type="select" id="selectUsuario" name="selectUsuario">
+                    <option selected>Elegir tipo de usuario...</option>
                     <option value="Administrador">Administrador</option>
                     <option value="Medico Basico">Médico Básico</option>
                     <option value="Basico">Básico</option>

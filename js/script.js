@@ -799,13 +799,45 @@ function obtenerDatosUsuario(id){
     $("#actualizar_usuario_rut").val(usuario.rut);
     $("#actualizar_selectUsuario").val(usuario.tipo_usuario);
     $("#actualizar_email").val(usuario.email);
+    $("#actualizar_selectUnidad").val(usuario.areas_id_area);
 
   }); 
   //mostramos modal
   $("#myModalActualizarUsuario").modal("show");
 }
 
+function actualizarUsuario() {
+  // get values
+  var nombre = $("#actualizar_nombre").val();
+  var apellido = $("#actualizar_apellido").val();
+  var rut = $("#actualizar_usuario_rut").val();
+  var email = $("#actualizar_email").val();
+  var areas_id_area = $("#actualizar_selectUnidad").val();
+  var tipo_usuario = $("#actualizar_selectUsuario").val();
+  
+  // get hidden field value
+  var id = $("#id_paciente_oculto_id_usuario").val();
 
+  // Update the details by requesting to the server using ajax
+  $.post("../ajax/ActualizarUsuario.php", {
+          id: id,
+          nombre: nombre,
+          apellido: apellido,
+          rut: rut,
+          email: email,
+          areas_id_area: areas_id_area,
+          tipo_usuario: tipo_usuario,
+          
+      },
+      function (data, status) {
+          // hide modal popup
+          $("#myModalActualizarUsuario").modal("hide");
+          // reload Users by using readRecords();
+          actualizarTablaUsuarios();
+          alertify.success('Datos del usuario actualizados correctamente.');
+      }
+  );
+}
 
 
 /*-------------------------------------------------------------------------------------------*/
