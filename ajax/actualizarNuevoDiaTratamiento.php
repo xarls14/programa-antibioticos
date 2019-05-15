@@ -13,6 +13,7 @@ if(isset($_POST))
     $dia_tratamiento = mysqli_real_escape_string($link, $_POST["dias_tratamiento"]);
     $num_frasco = mysqli_real_escape_string($link, $_POST["num_frasco"]); 
     $fecha = mysqli_real_escape_string($link, $_POST["fecha"]);
+    $medico_prescripcion = mysqli_real_escape_string($link, $_POST["medico_prescripcion"]); 
     
     
  
@@ -32,8 +33,8 @@ if(isset($_POST))
         echo "Detalles de error: ".mysqli_error($link).".";
     }  
 
-    $query2 = "INSERT INTO fecha_tratamiento(fecha, antibioticos_id_antibiotico, antibioticos_tratamientos_id_tratamiento)
-                        VALUES('$fecha', '$antibiotico_id', '$tratamiento_id')";
+    $query2 = "INSERT INTO fecha_tratamiento(fecha, antibioticos_id_antibiotico, antibioticos_tratamientos_id_tratamiento, medico_prescripcion)
+                        VALUES('$fecha', '$antibiotico_id', '$tratamiento_id', '$medico_prescripcion')";
 
 
     $result = mysqli_query($link, $query2);    
@@ -65,6 +66,6 @@ if(isset($_POST))
     /*if (!$result = mysqli_query($link, $query)) {
         exit(mysqli_error($link));
     }*/
-    echo "Antibiotico actualizado correctamente.";
+    echo "Nuevo día de tratamiento ingresado correctamente.";
 
 }

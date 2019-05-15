@@ -30,7 +30,7 @@
             <th>Sala - Cama</th>
             <th>Diagnóstico</th>
             <th>Antibiótico</th>
-            <th>Médico tratante</th>
+            <!--<th>Médico tratante</th>-->
             <th>Dosis</th>
             <th>Días ATB</th>
             <th>N° Frascos</th>
@@ -53,7 +53,7 @@
                   <th>Sala - Cama</th>
                   <th>Diagnóstico</th>
                   <th>Antibiótico</th>
-                  <th>Médico tratante</th>
+                  <!--<th>Médico tratante</th>-->
                   <th>Dosis</th>
                   <th>Días ATB</th>
                   <th>N° Frascos</th>
@@ -75,7 +75,7 @@
                   <th>Sala - Cama</th>
                   <th>Diagnóstico</th>
                   <th>Antibiótico</th>
-                  <th>Médico tratante</th>
+                  <!--<th>Médico tratante</th>-->
                   <th>Dosis</th>
                   <th>Días ATB</th>
                   <th>N° Frascos</th>
@@ -98,7 +98,7 @@
                   <th>Sala - Cama</th>
                   <th>Diagnóstico</th>
                   <th>Antibiótico</th>
-                  <th>Médico tratante</th>
+                  <!--<th>Médico tratante</th>-->
                   <th>Dosis</th>
                   <th>Días ATB</th>
                   <th>N° Frascos</th>
@@ -236,7 +236,7 @@
                         <td>'.$row['sala_cama'].'</td>  
                         <td>'.$row['diagnostico'].'</td>
                         <td>'.$row['nombre'].'</td> 
-                        <td>'.$row['medico_tratante'].'</td> 
+                        <!--<td>'.$row['medico_tratante'].'</td>--> 
                         <td>'.$row['dosis'].'</td>';
 
                         if ($row['dias_tratamiento'] == 0) {
@@ -263,6 +263,11 @@
                              <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                              <i class="fas fa-comments"></i></button>   
                          </span>
+
+                         <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <i class="fas fa-prescription-bottle"></i></button>   
+                                </span>
                         </td>
                         
                     </tr>';  
@@ -279,7 +284,7 @@
                                <td>'.$row['sala_cama'].'</td>  
                                <td>'.$row['diagnostico'].'</td>
                                <td>'.$row['nombre'].'</td> 
-                               <td>'.$row['medico_tratante'].'</td> 
+                               <!--<td>'.$row['medico_tratante'].'</td>--> 
                                <td>'.$row['dosis'].'</td>';
 
                                if ($row['dias_tratamiento'] == 0) {
@@ -321,6 +326,11 @@
                                     <i class="fas fa-comments"></i></button>   
                                 </span>
 
+                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <i class="fas fa-prescription-bottle"></i></button>   
+                                </span>
+
                                 <!--<span data-toggle="tooltip" data-placement="top" title="Agregar antibiótico a este tratamiento.">
                                     <button type="button" class="btn btn-secondary" onclick="agregarAntibiotico('.$row['id_tratamiento'].')">
                                     <i class="fas fa-plus-square"></i>   
@@ -340,7 +350,7 @@
                                <td>'.$row['sala_cama'].'</td>  
                                <td>'.$row['diagnostico'].'</td>
                                <td>'.$row['nombre'].'</td> 
-                               <td>'.$row['medico_tratante'].'</td> 
+                               <!--<td>'.$row['medico_tratante'].'</td>--> 
                                <td>'.$row['dosis'].'</td>';
 
                                if ($row['dias_tratamiento'] == 0) {
@@ -373,6 +383,11 @@
                                     <i class="fas fa-comments"></i></button>   
                                 </span>
 
+                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <i class="fas fa-prescription-bottle"></i></button>   
+                                </span>
+
                                 <!--<span data-toggle="tooltip" data-placement="top"
                                   title="Editar datos tratamiento"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalActualizarPaciente" onclick="obtenerDatosPacientes('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-pen-square"></i></button>
                                 </span>-->
@@ -401,7 +416,7 @@
                                <td>'.$row['sala_cama'].'</td>  
                                <td>'.$row['diagnostico'].'</td>
                                <td>'.$row['nombre'].'</td> 
-                               <td>'.$row['medico_tratante'].'</td> 
+                               <!--<td>'.$row['medico_tratante'].'</td>--> 
                                <td>'.$row['dosis'].'</td>';
 
                                if ($row['dias_tratamiento'] == 0) {
@@ -428,6 +443,11 @@
                                <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
                                     <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-comments"></i></button>   
+                                </span>
+
+                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <i class="fas fa-prescription-bottle"></i></button>   
                                 </span>
 
                                 <!--<span data-toggle="tooltip" data-placement="top" title="Cambiar estado del antibiotico.">

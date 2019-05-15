@@ -27,12 +27,14 @@
               </div>-->
             </div>
             <div class="row">
-              <div class="form-group col-sm-12">
+              <div class="form-group col-sm-6">
                 <label>Fecha tratamiento</label>
                 <input class="form-control" id="fecha_tratamiento" name="fecha_tratamiento" placeholder="Ingrese fecha tratamiento">
-
               </div>
-              
+              <div class="form-group col-sm-6">
+                <label>Médico prescriptor</label>
+                <input class="form-control" type="text" id="medico_prescripcion" name="medico_prescripcion" placeholder="Ingrese médico prescriptor">    
+              </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" onclick="validarFormNuevoDiaTratamiento()">Aceptar</button>

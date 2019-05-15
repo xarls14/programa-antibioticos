@@ -1,8 +1,4 @@
-<style type="text/css">
-  .error {
-  color: red;
-}
-</style>
+
 <div class="modal fade" id="myModalActualizarUsuario">
     <div class="modal-dialog modal-lg" style="width: 600px;">
       <div class="modal-content">
@@ -71,7 +67,7 @@
             </div>
             
             <div class="modal-footer">
-              <button type="submit" name="submit" id="submit" class="btn btn-primary" onclick="actualizarUsuario()">Editar usuario</button>
+              <button type="submit" class="btn btn-primary" onclick="actualizarUsuario()">Editar usuario</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
               <input type="hidden" id="id_paciente_oculto_id_usuario">
 

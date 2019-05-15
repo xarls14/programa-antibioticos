@@ -7,6 +7,7 @@ include '../modal/modalNuevoPaciente.php';
 include '../modal/modalVerFechaTratamiento.php';
 include '../modal/modalNuevoDiaTratamiento.php';
 include '../modal/modalMostrarObservaciones.php';
+include '../modal/modalVerRecetas.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){

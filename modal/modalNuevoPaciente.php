@@ -73,17 +73,20 @@
               <div class="form-group col-sm-12">
                   <label>Antibiótico N°1</label>
                   <select class="form-control" type="select" id="antibiotico" name="antibiotico[1]">
-                    <option selected>Elegir antibiótico...</option>
+                  <option selected>Seleccione antibiótico....</option>
                     <option value="AMIKACINA FA 500 MG">AMIKACINA FA 500 MG</option>
                     <option value="AMPICILINA 1 GR FA">AMPICILINA 1 GR FA</option>
                     <option value="CEFAZOLINA FA 1 GR">CEFAZOLINA FA 1 GR</option>
                     <option value="CEFTAZIDIMA FA 1 GR">CEFTAZIDIMA FA 1 GR</option>
                     <option value="CEFTRIAXONA FA 1GR">CEFTRIAXONA FA 1GR</option>
-                    <option value="ERTAPENEM FC 1 GRAMO">ERTAPENEM FC 1 GRAMO</option>
+                    <option value="CLINDAMICINA AM 600 MG/ML">CLINDAMICINA AM 600 MG/ML</option>
+                    <option value="CLOXACILINA SODICA FA 500 MG">CLOXACILINA SODICA FA 500 MG</option>
+                    <option value="ERTAPENEM FC 1 GRAMO">ERTAPENEM FC 1 GRAMO</option>  
                     <option value="ESTREPTOMICINA FA 1 GR">ESTREPTOMICINA FA 1 GR</option>
                     <option value="GENTAMICINA AM 80 MG/2 ML">GENTAMICINA AM 80 MG/2 ML</option>
-                    <option value="IMIPENEM FA 500 MG">IMIPENEM FA 500 MG</option>
+                    <option value="IMIPENEM FA 500 MG">IMIPENEM FA 500 MG</option>                   
                     <option value="MEROPENEM FA 1 GR">MEROPENEM FA 1 GR</option>
+                    <option value="METRONIDAZOL FA 500MG/100ML">METRONIDAZOL FA 500MG/100ML</option>
                     <option value="PENICILINA BENZATINA FA 1.200.000 UI">PENICILINA BENZATINA FA 1.200.000 UI</option>
                     <option value="PENICILINA G SODICA FA 2.000.000 UI">PENICILINA G SODICA FA 2.000.000 UI</option>
                     <option value="PIPERACILINA/TAZOBACTAM FA 4,5 GR">PIPERACILINA/TAZOBACTAM FA 4,5 GR</option>

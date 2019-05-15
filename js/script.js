@@ -105,21 +105,25 @@ $(document).ready(function(){
               '<div class="form-group col-sm-12">'+
                   '<label>Antibiótico N°'+x+'</label>'+
                   '<select class="form-control" type="select" id="antibiotico'+x+'" name="antibiotico['+x+']">'+
-                    '<option value="AMIKACINA FA 500 MG">AMIKACINA FA 500 MG</option>'+
-                    '<option value="AMPICILINA 1 GR FA">AMPICILINA 1 GR FA</option>'+
-                    '<option value="CEFAZOLINA FA 1 GR">CEFAZOLINA FA 1 GR</option>'+
-                    '<option value="CEFTAZIDIMA FA 1 GR">CEFTAZIDIMA FA 1 GR</option>'+
-                    '<option value="CEFTRIAXONA FA 1GR">CEFTRIAXONA FA 1GR</option>'+
-                    '<option value="ERTAPENEM FC 1 GRAMO">ERTAPENEM FC 1 GRAMO</option>'+
-                    '<option value="ESTREPTOMICINA FA 1 GR">ESTREPTOMICINA FA 1 GR</option>'+
-                    '<option value="GENTAMICINA AM 80 MG/2 ML">GENTAMICINA AM 80 MG/2 ML</option>'+
-                    '<option value="IMIPENEM FA 500 MG">IMIPENEM FA 500 MG</option>'+
-                    '<option value="MEROPENEM FA 1 GR">MEROPENEM FA 1 GR</option>'+
-                    '<option value="PENICILINA BENZATINA FA 1.200.000 UI">PENICILINA BENZATINA FA 1.200.000 UI</option>'+
-                    '<option value="PENICILINA G SODICA FA 2.000.000 UI">PENICILINA G SODICA FA 2.000.000 UI</option>'+
-                    '<option value="PIPERACILINA/TAZOBACTAM FA 4,5 GR">PIPERACILINA/TAZOBACTAM FA 4,5 GR</option>'+
-                    '<option value="SULFAMETOXAZOL/TRIMETOPRIMA 400/80MG AM">SULFAMETOXAZOL/TRIMETOPRIMA 400/80MG AM</option>'+
-                    '<option value="VANCOMICINA CLORHIDRATO 1 GR">VANCOMICINA CLORHIDRATO 1 GR</option>'+
+                  '<option selected>Seleccione antibiótico....</option>'+
+                  '<option value="AMIKACINA FA 500 MG">AMIKACINA FA 500 MG</option>'+
+                  '<option value="AMPICILINA 1 GR FA">AMPICILINA 1 GR FA</option>'+
+                  '<option value="CEFAZOLINA FA 1 GR">CEFAZOLINA FA 1 GR</option>'+
+                  '<option value="CEFTAZIDIMA FA 1 GR">CEFTAZIDIMA FA 1 GR</option>'+
+                  '<option value="CEFTRIAXONA FA 1GR">CEFTRIAXONA FA 1GR</option>'+
+                  '<option value="CLINDAMICINA AM 600 MG/ML">CLINDAMICINA AM 600 MG/ML</option>'+
+                  '<option value="CLOXACILINA SODICA FA 500 MG">CLOXACILINA SODICA FA 500 MG</option>'+
+                  '<option value="ERTAPENEM FC 1 GRAMO">ERTAPENEM FC 1 GRAMO</option>'+  
+                  '<option value="ESTREPTOMICINA FA 1 GR">ESTREPTOMICINA FA 1 GR</option>'+
+                  '<option value="GENTAMICINA AM 80 MG/2 ML">GENTAMICINA AM 80 MG/2 ML</option>'+
+                  '<option value="IMIPENEM FA 500 MG">IMIPENEM FA 500 MG</option>'+                   
+                  '<option value="MEROPENEM FA 1 GR">MEROPENEM FA 1 GR</option>'+
+                  '<option value="METRONIDAZOL FA 500MG/100ML">METRONIDAZOL FA 500MG/100ML</option>'+
+                  '<option value="PENICILINA BENZATINA FA 1.200.000 UI">PENICILINA BENZATINA FA 1.200.000 UI</option>'+
+                  '<option value="PENICILINA G SODICA FA 2.000.000 UI">PENICILINA G SODICA FA 2.000.000 UI</option>'+
+                  '<option value="PIPERACILINA/TAZOBACTAM FA 4,5 GR">PIPERACILINA/TAZOBACTAM FA 4,5 GR</option>'+
+                  '<option value="SULFAMETOXAZOL/TRIMETOPRIMA 400/80MG AM">SULFAMETOXAZOL/TRIMETOPRIMA 400/80MG AM</option>'+
+                  '<option value="VANCOMICINA CLORHIDRATO 1 GR">VANCOMICINA CLORHIDRATO 1 GR</option>'+
                   '</select>'+
               '</div>'+
              
@@ -192,6 +196,10 @@ $('#formNuevoDiaTratamiento').validate({
     fecha_tratamiento: {
       required: true,
       
+    },
+    medico_prescripcion: {
+      required: true,
+      maxlength: 50,
     }
   },
   messages: {
@@ -201,6 +209,10 @@ $('#formNuevoDiaTratamiento').validate({
     },
     fecha_tratamiento: {
       required: 'Debe seleccionar el día de tratamiento.',
+    },
+    medico_prescripcion: {
+      required: 'Debe ingresar el médico prescriptor.',
+      maxlength: 'Debe ser un máximo de 50 caracteres.'
     }
   },    
     submitHandler: function () {
@@ -221,6 +233,7 @@ function nuevoDiaTratamiento(){
 
     //obtenemos valor que ingresamos en el formulario
     var num_frasco = $("#num_frasco").val();
+    var medico_prescripcion = $("#medico_prescripcion").val();
     //lo parseamos a numero entero
     num_frasco_int = parseInt(num_frasco);
  
@@ -285,6 +298,7 @@ function nuevoDiaTratamiento(){
       num_frasco: num_frasco_suma,
       dias_tratamiento: num_dias_tratamiento_suma,
       fecha: fecha_inicio_parseada,
+      medico_prescripcion: medico_prescripcion,
     },
     function (data, status) {
       // hide modal popup
@@ -297,7 +311,7 @@ function nuevoDiaTratamiento(){
     });
 
     switch(num_dias_tratamiento_suma){
-      case 4:
+      case 14:
         //llamado ajax para ir por los datos de los antibioticos
         $.post("../ajax/leerDetallesNuevoDiaTratamiento.php",{
           id: id,
@@ -306,7 +320,7 @@ function nuevoDiaTratamiento(){
         },
         function (data, status){
           var datos = JSON.parse(data);
-          var diasTratamiento4 = 4;
+          var diasTratamiento4 = 14;
           $.post("../ajax/enviarEmail.php", {//llamado ajax para envio de correo
             nombres: datos.nombres,
             apellidos: datos.apellidos,
@@ -583,6 +597,63 @@ function abrirModalVerObservaciones(id,id_tratamiento,id_antibiotico){
 }
 
 /*-----------------------------------------------------------------------------*/
+function abrirModalVerRecetas(id,id_tratamiento,id_antibiotico){
+  //agregamos el id del usuario para ocuparlo luego
+  $("#id_paciente_oculto_id_paciente").val(id);
+  $("#id_paciente_oculto_id_tratamiento").val(id_tratamiento);
+  $("#id_paciente_oculto_id_antibiotico").val(id_antibiotico);
+
+
+  $.post("../ajax/leerDetallesVerRecetas.php",{
+    id: id,
+    id_tratamiento: id_tratamiento,
+    id_antibiotico: id_antibiotico,
+  },
+  function (data, status){
+    //parse datos json
+    var recetas = JSON.parse(data);
+    
+
+    //probando validacion para que no muestre datos 
+    if (recetas.status == 200) {
+      $('#tablaRecetas tbody').append('<tr><td colspan="3" style="text-align: center;">¡No se encontraron datos!</td></tr>');
+    }
+
+    var count = Object.keys(recetas).length;
+
+    for (var i = 0; i < count; i++) {
+    
+      //transformar datetime a formato chileno  
+      var date = recetas[i].fecha;//acedemos a la fecha
+      var fecha = date.split("-");//separamos por espacios fecha en [0] y horas en [1]
+      var dia = fecha[2];
+      var mes = fecha[1];
+      var anio = fecha[0];
+      var fecha_chilena = dia + "-" + mes + "-" + anio;
+      
+      
+
+      num = i+1;
+      $('#tablaRecetas tbody').append('<tr><td>'+ num + '</td><td>'
+                                            + recetas[i].medico_prescripcion + '</td><td>' 
+                                            + fecha_chilena + '</td><td>');
+
+    }
+      
+    //$('#tablaDescripciones tbody').append('<tr><td colspan="4">¡No se encontraron datos!</td></tr>');
+    
+
+    
+    
+  }); 
+  //mostramos modal
+  $("#myModalVerRecetas").modal("show");
+  //actualizarTablaActivos();//aca deberia ser actualizar tabla observaciones 
+}
+/*---------------------Ver Recetas---------------------------------*/
+
+/*------------------------------------------------------------------*/
+
 
 /*---------------listar archivos pdf por cada tratamiento----------------------*/
 function abrirModalVerPdf(id,id_tratamiento){
@@ -1460,6 +1531,9 @@ function limpiarTablaPdf(){
 
 /*------------------------------------------------------------------------*/
 
+function limpiarTablaRecetas(){
+  $("#tablaRecetas tr td").remove();
+}
 
 
 /*----------------------- Multi range picker para seleccionar dia en nueva dosis -----------------------------*/

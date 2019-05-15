@@ -1,8 +1,4 @@
-<style type="text/css">
-  .error {
-  color: red;
-}
-</style>
+
 <div class="modal fade" id="myModalNuevoUsuario">
     <div class="modal-dialog modal-lg" style="width: 600px;">
       <div class="modal-content">
