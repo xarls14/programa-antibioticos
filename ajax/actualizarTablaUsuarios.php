@@ -40,7 +40,7 @@
        //como es vista administrador deberia poder ver trazabilidad de una muestra al igual que lab 
        $query = 
                "SELECT * FROM usuarios 
-                ORDER BY id_usuario";
+                ORDER BY id_usuario DESC";
    
    
    }

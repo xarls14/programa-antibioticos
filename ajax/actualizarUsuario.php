@@ -21,7 +21,7 @@ if(isset($_POST))
     
     $query = "UPDATE usuarios
             SET nombre = '$nombre', apellido = '$apellido', rut = '$rut', email = '$email', areas_id_area = '$areas_id_area', tipo_usuario = '$tipo_usuario' 
-            WHERE id_usuario = '$id' 
+            WHERE id_usuario = '$id'
             ";
 
     /*$query = "UPDATE pacientes, muestras SET tipo_muestra = '$tipo_muestra', establecimiento_origen = 'HPL' , areas_id_area = '$unidad_origen', num_frasco = '$num_frasco' WHERE id_muestra = '$id'";*/

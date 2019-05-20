@@ -1077,11 +1077,12 @@ function validacionCaracteresRut(e){
 /*-----------------------------------------------------------------------*/
 
 /*-------------------------Eliminar Antibiótico-------------------------*/
-function eliminarPaciente(id){
+function eliminarPaciente(id, id_tratamiento){
   var conf = confirm("¿Está seguro que desea eliminar el antibiótico seleccionado?");
   if(conf == true){
     $.post("../ajax/eliminarAntibiotico.php",{
-        id: id
+        id: id,
+        id_tratamiento: id_tratamiento
       },
       function (data,status){
         actualizarTablaActivos();

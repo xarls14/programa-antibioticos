@@ -314,10 +314,10 @@
                                   title="Editar datos tratamiento"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalActualizarPaciente" onclick="obtenerDatosPacientes('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-pen-square"></i></button>
                                 </span>
 
-                                <!--<span data-toggle="tooltip" data-placement="top" title="Eliminar tratamiento">
-                                    <button type="button" class="btn btn-danger" onclick="eliminarPaciente('.$row['id_antibiotico'].')">
+                                <span data-toggle="tooltip" data-placement="top" title="Eliminar tratamiento">
+                                    <button type="button" class="btn btn-danger" onclick="eliminarPaciente('.$row['id_antibiotico'].','.$row['id_tratamiento'].')">
                                     <i class="fas fa-trash-alt"></i></button>   
-                                </span>--> 
+                                </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
                                     <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
@@ -325,7 +325,7 @@
                                 </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-prescription-bottle"></i></button>   
                                 </span>
 
@@ -382,7 +382,7 @@
                                 </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-prescription-bottle"></i></button>   
                                 </span>
 
@@ -444,7 +444,7 @@
                                 </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-danger" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-prescription-bottle"></i></button>   
                                 </span>
 
