@@ -88,6 +88,10 @@ function validarFormPaciente(){
           }
       });
   });*/  
+
+  /*if ($('#antibiotico').val().trim() === '') {
+    alert('Debe seleccionar un antibiótico.');
+  }*/
 }
 
 //agregar mas antibioticos por paciente al hacer ingreso de uno
@@ -222,6 +226,10 @@ $('#formNuevoDiaTratamiento').validate({
 }
 
 function nuevoDiaTratamiento(){
+  //en nuevo día de tratamiento necesitamos tambien necesitamos los 3 id para consultar las fechas y mostrarlas en el 
+
+
+
   // declaramos variables 
     var num_frasco_suma = 0;
     var num_frasco_int = 0;

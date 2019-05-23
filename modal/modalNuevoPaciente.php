@@ -73,7 +73,7 @@
               <div class="form-group col-sm-12">
                   <label>Antibiótico N°1</label>
                   <select class="form-control" type="select" id="antibiotico" name="antibiotico[1]">
-                  <option selected>Seleccione antibiótico....</option>
+                  <option value="" selected>Seleccione antibiótico....</option>
                     <option value="AMIKACINA FA 500 MG">AMIKACINA FA 500 MG</option>
                     <option value="AMPICILINA 1 GR FA">AMPICILINA 1 GR FA</option>
                     <option value="CEFAZOLINA FA 1 GR">CEFAZOLINA FA 1 GR</option>
