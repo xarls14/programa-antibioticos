@@ -36,7 +36,9 @@ try {
     $mail->addAddress('carlos.henriquez@redsalud.gob.cl'); //
     $mail->addAddress('paulo.navarro@redsalud.gov.cl'); //
     $mail->addAddress('alejandro.vegal@redsalud.gov.cl'); //
-    $mail->addAddress('milton.huenchunao@redsalud.gov.cl'); //
+    $mail->addAddress('azuritapoza@gmail.com'); //
+    $mail->addAddress('jonathan.alarcon@redsalud.gob.cl'); //
+    $mail->addAddress('marlin.anderi@gmail.com'); //
 
     /*--------------------------------------------------------------------------------------------------*/
     $mail->MsgHTML("<html>
