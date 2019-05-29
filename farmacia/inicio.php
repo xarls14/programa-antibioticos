@@ -8,6 +8,7 @@ include '../modal/modalVerFechaTratamiento.php';
 include '../modal/modalNuevoDiaTratamiento.php';
 include '../modal/modalMostrarObservaciones.php';
 include '../modal/modalVerRecetas.php';
+include '../modal/modalNuevoPassword.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){
@@ -117,7 +118,7 @@ tr.shown td.details-control {
 <script type="text/javascript" src="../js/script.js"></script>
 </head>
 
-<body>+
+<body>
 <?php include '../layout/headerFarmacia.php';?>
 
 

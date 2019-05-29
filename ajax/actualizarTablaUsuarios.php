@@ -105,6 +105,11 @@
                                     <button type="button" class="btn btn-danger" onclick="eliminarUsuario('.$row['id_usuario'].')">
                                     <i class="fas fa-trash-alt"></i></button>   
                                 </span>
+
+                                <span data-toggle="tooltip" data-placement="top" title="Reestablecer contraseña">
+                                    <button type="button" class="btn btn-success" onclick="reestablecerPassword('.$row['id_usuario'].')">
+                                    <i class="fas fa-key"></i></button>   
+                                </span>
                             </td>
                         </tr>';
                     break;

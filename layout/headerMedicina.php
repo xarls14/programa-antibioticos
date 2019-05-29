@@ -38,6 +38,11 @@
     </ul>
   </div>
   <div>
+    <ul class="navbar-nav" style="float: left;">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" style="cursor: pointer; margin-right: 20px;" onclick="javascript:abrirModalNuevoPassword('<?php echo($_SESSION['id_usuario']) ?>');" data-toggle="modal" data-target="#myModalNuevoPassword" data-backdrop="static" data-keyboard="false">Cambiar Contraseña<span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
   	<ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="../logout.php">Cerrar Sesión<span class="sr-only">(current)</span></a>

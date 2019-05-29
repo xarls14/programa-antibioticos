@@ -4,6 +4,7 @@ session_start();
 include '../modal/modalNuevoATB.php';
 include '../modal/modalSubirPdf.php';
 include '../modal/modalVerPdf.php';
+include '../modal/modalNuevoPassword.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){

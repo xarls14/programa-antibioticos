@@ -155,6 +155,81 @@ $(document).ready(function(){
 /*----------------------------------------------------------------------------*/
 
 
+/*-------------------------------Cambiar contraseña---------------------------------------------*/
+
+/*------------------agregar paciente-----------------*/
+function NuevoPassword(){
+  var id_usuario = $("#id_usuario_oculto_id_usuario").val();
+  var nuevo_password = $("#nuevo_password").val();
+  
+  
+  $.post("../ajax/nuevoPassword.php", {//cambiar por diagnosticarPaciente.php
+    id_usuario: id_usuario,
+    nuevo_password: nuevo_password, 
+  }, function(data, status){
+    //cerramos el popup
+    $("#myModalNuevoPassword").modal("hide");
+    //limpiamos los campos
+    document.getElementById("FormNuevoPassword").reset();
+    //notificación
+    alertify.success('Contraseña modificada correctamente.');
+  });
+}
+
+//validar modal crear paciente
+function validarFormNuevoPassword(){
+  $('#FormNuevoPassword').validate({
+    rules: {
+      nuevo_password: {
+        required: true,
+        maxlength: 30,
+      },
+      nuevo_conf_password: {
+        required: true,
+        equalTo:"#nuevo_password",
+        maxlength: 30,
+      }
+    },
+    messages: {
+      nuevo_password: {
+        required: 'Debe ingresar una contraseña',
+        maxlength: 'La contraseña debe tener un máximo de 30 caracteres',
+      },
+      nuevo_conf_password: {
+        required: 'Debe confirmar la primera contraseña',
+        equalTo: 'La contraseña debe coincidir...',
+        maxlength: 'La contraseña debe tener un máximo de 30 caracteres',
+      }
+    },    
+    submitHandler: function () {
+      NuevoPassword();
+    }
+  });
+}
+
+function abrirModalNuevoPassword(id_usuario){
+ 
+  //agregamos el id del usuario para ocuparlo luego
+  $("#id_usuario_oculto_id_usuario").val(id_usuario);
+
+  /*$.post("../ajax/leerIdUsuario.php",{
+    id_usuario: id_usuario,
+  },
+  function (data, status){
+    //parse datos json
+
+  }); */
+  //mostramos modal
+  $("#myModalNuevoPassword").modal("show");
+  //alert(id_usuario);
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+
+
 /*---------------------agregar nueva dosis a antibiotico------------*/
 
 
@@ -569,29 +644,31 @@ function abrirModalVerObservaciones(id,id_tratamiento,id_antibiotico){
     //probando validacion para que no muestre datos 
     if (observaciones.status == 200) {
       $('#tablaDescripciones tbody').append('<tr><td colspan="4" style="text-align: center;">¡No se encontraron datos!</td></tr>');
+    }else{
+      var count = Object.keys(observaciones).length;
+
+      for (var i = 0; i < count; i++) {
+  
+      //transformar datetime a formato chileno  
+      var datetime = observaciones[i].fecha_observacion;//acedemos a la fecha
+      var fecha = datetime.split(" ");//separamos por espacios fecha en [0] y horas en [1]
+      var date = fecha[0];
+      var hora = fecha[1];
+      var fechaYYYYMMDD = date.split('-');
+      var fecha_chilena = fechaYYYYMMDD[2] + "-" + fechaYYYYMMDD[1] + "-" + fechaYYYYMMDD[0];
+      //concatenamos con la hora al final
+      var datetimeChileno = fecha_chilena + " " + hora;
+  
+      num = i+1;
+      $('#tablaDescripciones tbody').append('<tr><td>'+ num + '</td><td>'
+                                            + observaciones[i].observacion + '</td><td>' 
+                                            + observaciones[i].medico_observacion + '</td><td>'
+                                            + datetimeChileno + '</td></tr>');
+  
+      }
     }
 
-    var count = Object.keys(observaciones).length;
 
-    for (var i = 0; i < count; i++) {
-
-    //transformar datetime a formato chileno  
-    var datetime = observaciones[i].fecha_observacion;//acedemos a la fecha
-    var fecha = datetime.split(" ");//separamos por espacios fecha en [0] y horas en [1]
-    var date = fecha[0];
-    var hora = fecha[1];
-    var fechaYYYYMMDD = date.split('-');
-    var fecha_chilena = fechaYYYYMMDD[2] + "-" + fechaYYYYMMDD[1] + "-" + fechaYYYYMMDD[0];
-    //concatenamos con la hora al final
-    var datetimeChileno = fecha_chilena + " " + hora;
-
-    num = i+1;
-    $('#tablaDescripciones tbody').append('<tr><td>'+ num + '</td><td>'
-                                          + observaciones[i].observacion + '</td><td>' 
-                                          + observaciones[i].medico_observacion + '</td><td>'
-                                          + datetimeChileno + '</td></tr>');
-
-    }
       
     //$('#tablaDescripciones tbody').append('<tr><td colspan="4">¡No se encontraron datos!</td></tr>');
     
@@ -1102,6 +1179,25 @@ function eliminarPaciente(id, id_tratamiento){
 
 /*-----------------------------------------------------------------------*/
 
+/*-------------reestablecer contraseña de usuario desde gestion de usuarios------------*/
+
+function reestablecerPassword(id){
+  var conf = confirm("¿Está seguro que desea reestablecer la contraseña del usuario seleccionado?");
+  if(conf == true){
+    $.post("../ajax/reestablecerPassword.php",{
+        id: id
+      },
+      function (data,status){
+        alertify.success('Contraseña de usuario reestablecida correctamente.');
+      }
+    );  
+  }
+}
+
+
+
+/*-------------------------------------------------------------------------------------*/
+
 /*eliminar usuarios*/
 function eliminarUsuario(id){
   var conf = confirm("¿Está seguro que desea eliminar el usuario seleccionado?");
@@ -1472,6 +1568,11 @@ function actualizarTablaUsuarios() {
 }
 
 /*----------------Limpiar modals-------------------------------------------*/
+
+function limpiarNuevoPassword(){
+  document.getElementById("FormNuevoPassword").reset();//removemos los inputs extras de muestras
+  $( "label.error" ).remove();//eliminamos los labels de error que quedan al cancelar el formulario 
+}
 
 function limpiarSubirPdf(){
   document.getElementById("formSubirPdf").reset();

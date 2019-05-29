@@ -39,7 +39,8 @@ try {
     $mail->addAddress('azuritapoza@gmail.com'); //
     $mail->addAddress('jonathan.alarcon@redsalud.gob.cl'); //
     $mail->addAddress('marlin.anderi@gmail.com'); //
-
+    $mail->addAddress('azuritapoza@gmail.com');
+    
     /*--------------------------------------------------------------------------------------------------*/
     $mail->MsgHTML("<html>
     <head>

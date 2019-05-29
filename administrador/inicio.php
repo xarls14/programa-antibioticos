@@ -3,12 +3,15 @@ session_start();
 
 include '../modal/modalCrearUsuario.php';
 include '../modal/modalActualizarUsuario.php';
+include '../modal/modalNuevoPassword.php';
 include '../config.php';
 
 if(!isset($_SESSION['rut']) || empty($_SESSION['rut'])){
     header("location: login.php");
     exit;
 }
+
+$id_usuario = $_SESSION['id_usuario'];
 
 ?>
 
