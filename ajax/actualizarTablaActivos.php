@@ -271,16 +271,30 @@
 
                         <td>
                         <div>
-                         <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
-                             <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
-                             <i class="fas fa-comments"></i></button>   
-                         </span>
+                              <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
+                                <button type="button" class="btn btn-primary" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                <i class="fas fa-comments"></i></button>   
+                             </span>
+                             ';
+                                
+                             
 
-                         <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
-                                    <i class="fas fa-prescription-bottle"></i></button>   
-                                </span>
-                        </td>        
+                                
+                             //habilitamos dosis segun existan días de tratamientos 
+                              if ($row['dias_tratamiento'] == 0) {
+                                $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                <button disabled  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                <i class="fas fa-prescription-bottle"></i></button>   
+                                </span>';
+                              }else{
+                                 $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                 <button  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                 <i class="fas fa-prescription-bottle"></i></button>   
+                                 </span>';
+                              }
+                              
+
+                             $data .= '</td>    
                     </tr>';
                     break;
 
@@ -333,22 +347,32 @@
                                 </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
-                                    <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-primary" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-comments"></i></button>   
                                 </span>
-
-                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
-                                    <i class="fas fa-prescription-bottle"></i></button>   
-                                </span>
+                                
+                                <span data-toggle="tooltip" data-placement="top" title="Cambiar estado del antibiotico.">
+                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalCambioEstadoATB" data-backdrop="static" data-keyboard="false" onclick="obtenerDatosAntibioticos('.$row['id_antibiotico'].')">
+                                  <i class="fas fa-exchange-alt"></i></button>   
+                                </span> ';
                                 
 
-                                <!--<span data-toggle="tooltip" data-placement="top" title="Agregar antibiótico a este tratamiento.">
-                                    <button type="button" class="btn btn-secondary" onclick="agregarAntibiotico('.$row['id_tratamiento'].')">
-                                    <i class="fas fa-plus-square"></i>   
-                                </span>--> 
+                                
+                               //habilitamos dosis segun existan días de tratamientos 
+                                if ($row['dias_tratamiento'] == 0) {
+                                  $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                  <button disabled  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                  <i class="fas fa-prescription-bottle"></i></button>   
+                                  </span>';
+                                }else{
+                                   $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                   <button  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                   <i class="fas fa-prescription-bottle"></i></button>   
+                                   </span>';
+                                }
+                                
 
-                               </td>
+                               $data .= '</td>
                                
                            </tr>';
 
@@ -399,16 +423,27 @@
                                 </span>
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
-                                    <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-primary" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-comments"></i></button>   
-                                </span>
+                                    </span>';
+                                
 
-                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
-                                    <i class="fas fa-prescription-bottle"></i></button>   
-                                </span>
-
-                               </td>
+                                
+                                    //habilitamos dosis segun existan días de tratamientos 
+                                     if ($row['dias_tratamiento'] == 0) {
+                                       $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                       <button disabled  type="button" data-backdrop="static" data-keyboard="false" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                       <i class="fas fa-prescription-bottle"></i></button>   
+                                       </span>';
+                                     }else{
+                                        $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                        <button  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                        <i class="fas fa-prescription-bottle"></i></button>   
+                                        </span>';
+                                     }
+                                     
+     
+                                    $data .= '</td>
                                
                            </tr>';  
                            
@@ -451,19 +486,27 @@
                                 </span>--> 
 
                                 <span data-toggle="tooltip" data-placement="top" title="Ver observaciones de antibióticos">
-                                    <button type="button" class="btn btn-primary" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                    <button type="button" class="btn btn-primary" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerObservaciones('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
                                     <i class="fas fa-comments"></i></button>   
-                                </span>
+                                    </span>';
+                                
 
-                                <span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
-                                    <button type="button" class="btn btn-dark" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
-                                    <i class="fas fa-prescription-bottle"></i></button>   
-                                </span>
-
-                                <!--<span data-toggle="tooltip" data-placement="top"
-                                  title="Dianosticar paciente"><button type="button" class="btn btn-success"  onclick="abrirModalDiagnosticarPaciente('.$row['id_paciente'].','.$row['id_tratamiento'].')" data-backdrop="static" data-keyboard="false"><i class="fas fa-notes-medical"></i></button>
-                                </span>-->
-                               </td>
+                                
+                                    //habilitamos dosis segun existan días de tratamientos 
+                                     if ($row['dias_tratamiento'] == 0) {
+                                       $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                       <button disabled  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                       <i class="fas fa-prescription-bottle"></i></button>   
+                                       </span>';
+                                     }else{
+                                        $data .= '<span data-toggle="tooltip" data-placement="top" title="Ver recetas de antibióticos prescritos">
+                                        <button  type="button" class="btn btn-dark" data-backdrop="static" data-keyboard="false" onclick="abrirModalVerRecetas('.$row['id_paciente'].','.$row['id_tratamiento'].','.$row['id_antibiotico'].')">
+                                        <i class="fas fa-prescription-bottle"></i></button>   
+                                        </span>';
+                                     }
+                                     
+     
+                                    $data .= '</td>
                                
                            </tr>'; 
                        } 

@@ -48,7 +48,7 @@
 
              <!--Dosis y medico tratante-->
              <div class="row">
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-12">
                 <label>Dosis</label>
                 <input type="form-text" class="form-control" id="dosis" placeholder="Ingresa dosis" name="dosis">     
               </div> 

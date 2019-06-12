@@ -14,6 +14,7 @@ if(isset($_POST))
     $num_frasco = mysqli_real_escape_string($link, $_POST["num_frasco"]); 
     $fecha = mysqli_real_escape_string($link, $_POST["fecha"]);
     $medico_prescripcion = mysqli_real_escape_string($link, $_POST["medico_prescripcion"]); 
+    $medico_prescripcionUpperCase = strtoupper($medico_prescripcion);
     
     
  
@@ -34,7 +35,7 @@ if(isset($_POST))
     }  
 
     $query2 = "INSERT INTO fecha_tratamiento(fecha, antibioticos_id_antibiotico, antibioticos_tratamientos_id_tratamiento, medico_prescripcion)
-                        VALUES('$fecha', '$antibiotico_id', '$tratamiento_id', '$medico_prescripcion')";
+                        VALUES('$fecha', '$antibiotico_id', '$tratamiento_id', '$medico_prescripcionUpperCase')";
 
 
     $result = mysqli_query($link, $query2);    

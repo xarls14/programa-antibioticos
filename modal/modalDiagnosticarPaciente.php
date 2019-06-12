@@ -20,10 +20,23 @@
           <!-- Select de antibioticos -->
           <div>
             <div class="row">
-              <div class="form-group col-sm-12">
+              <div class="form-group col-sm-6">
                   <label>Diagnóstico paciente</label>
                   <input type="form-text" class="form-control" maxlength="50" id="diagnostico_paciente" name="diagnostico_paciente" placeholder="Ingresa diagnóstico" onkeypress="return soloLetras(event)">
               </div>
+
+              <!--<div class="form-group col-sm-6">
+              <label>Antibióticos</label>
+                <select class="selectpicker form-control" data-live-search="true" id="antibioticos" name="antibioticos">
+                  <option>Hot Dog, Fries and a Soda</option>
+                  <option>Burger, Shake and a Smile</option>
+                  <option>Sugar, Spice and alnombrel things nice</option>
+                </select>
+                <select class="form-control" type="select" id="select_cei10" name="select_cei10">
+                
+                </select>
+
+              </div>-->
              </div>
           </div>
           <div class="modal-footer">
@@ -42,3 +55,4 @@
   </div>
 
 </div>
+

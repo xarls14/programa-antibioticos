@@ -12,17 +12,22 @@ if(isset($_POST))
     $antibiotico_id = mysqli_real_escape_string($link, $_POST["id_antibiotico"]); 
 
 
-    $nombres = mysqli_real_escape_string($link, $_POST["nombres"]);  
+    $nombres = mysqli_real_escape_string($link, $_POST["nombres"]); 
+    $nombresUpperCase = strtoupper($nombres); 
     $apellidos = mysqli_real_escape_string($link, $_POST["apellidos"]); 
+    $apellidosUpperCase = strtoupper($apellidos);
     $rut = mysqli_real_escape_string($link, $_POST["rut"]);  
+
+    //estandarizar sala cama con caracteres 
     $sala_cama = mysqli_real_escape_string($link, $_POST["sala_cama"]); 
+    //estabdarizar dosis con caracteres
     $dosis = mysqli_real_escape_string($link, $_POST["dosis"]);  
     $antibiotico = mysqli_real_escape_string($link, $_POST["nombre"]); 
  
     /*comprobado que se puede agregar trazabilidad y cambiar el estado*/
     
     $query = "UPDATE pacientes, tratamientos, antibioticos 
-            SET nombres = '$nombres', apellidos = '$apellidos', rut = '$rut', sala_cama = '$sala_cama', dosis = '$dosis', nombre = '$antibiotico' 
+            SET nombres = '$nombresUpperCase', apellidos = '$apellidosUpperCase', rut = '$rut', sala_cama = '$sala_cama', dosis = '$dosis', nombre = '$antibiotico' 
             WHERE id_paciente = '$id' 
             AND id_tratamiento = '$tratamiento_id'
             AND id_antibiotico = '$antibiotico_id'

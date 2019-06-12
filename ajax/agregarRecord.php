@@ -6,7 +6,9 @@
 
         
         $nombre = mysqli_real_escape_string($link, $_POST["nombre"]);  
+        $nombreUpperCase = strtoupper($nombre);
         $apellido = mysqli_real_escape_string($link, $_POST["apellido"]); 
+        $apellidoUpperCase = strtoupper($apellido);
         $rut = mysqli_real_escape_string($link, $_POST["rut"]);  
         $sala_cama = mysqli_real_escape_string($link, $_POST["sala_cama"]); 
         $medico_tratante = mysqli_real_escape_string($link, $_POST["medico_tratante"]); 
@@ -31,7 +33,7 @@
                     mysqli_autocommit($link, false);
                     $flag = true;
 
-                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, sala_cama, areas_id_area) VALUES('$nombre','$apellido','$rut', now(), '$sala_cama', '1')";
+                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, sala_cama, areas_id_area) VALUES('$nombreUpperCase','$apellidoUpperCase','$rut', now(), '$sala_cama', '1')";
 
                     $result = mysqli_query($link, $query1);
 
@@ -93,7 +95,7 @@
                     mysqli_autocommit($link, false);
                     $flag = true;
 
-                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, establecimiento_origen, areas_id_area) VALUES('$nombre','$apellidos','$rut', now(), 'HPL', '2')";
+                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, establecimiento_origen, areas_id_area) VALUES('$nombreUpperCase','$apellidoUpperCase','$rut', now(), 'HPL', '2')";
 
                     $result = mysqli_query($link, $query1);
 
@@ -151,7 +153,7 @@
                     mysqli_autocommit($link, false);
                     $flag = true;
 
-                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, establecimiento_origen, areas_id_area) VALUES('$nombres','$apellidos','$rut', now(), 'HPL', '3')";
+                    $query1 = "INSERT INTO pacientes(nombres, apellidos, rut, fecha_ingreso, establecimiento_origen, areas_id_area) VALUES('$nombreUpperCase','$apellidoUpperCase','$rut', now(), 'HPL', '3')";
 
                     $result = mysqli_query($link, $query1);
 

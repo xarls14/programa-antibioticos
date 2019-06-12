@@ -10,6 +10,7 @@ function agregarPaciente(){
     data: datastring,
     success: function(datastring){//no es ta pasando por success ya que la query arroja error en el codigo mysqli pero no asi en mysql workbench
       $("#myModalNuevoPaciente").modal("hide");
+
       actualizarTablaActivos();
       document.getElementById("formCrearPaciente").reset();
       $("#antibioticos").empty();
@@ -220,7 +221,7 @@ function abrirModalNuevoPassword(id_usuario){
 
   }); */
   //mostramos modal
-  $("#myModalNuevoPassword").modal("show");
+  $('#myModalNuevoPassword').modal({backdrop: 'static', keyboard: false});
   //alert(id_usuario);
 }
 
@@ -262,7 +263,7 @@ function obtenerDatosNuevaDiaTratamiento(id, id_tratamiento, id_antibiotico){
 
   }); 
   //mostramos modal
-  $("#myModalNuevoDiaTratamiento").modal("show");
+  $('#myModalNuevoDiaTratamiento').modal({backdrop: 'static', keyboard: false});
 }
 
 function validarFormNuevoDiaTratamiento(){
@@ -487,7 +488,7 @@ function abrirModalATB(id,id_tratamiento){
 
   }); 
   //mostramos modal
-  $("#myModalActualizarPaciente").modal("show");
+  $('#myModalActualizarPaciente').modal({backdrop: 'static', keyboard: false});
 }
 
 //validar modal agregar antibiotico
@@ -496,13 +497,13 @@ function validarFormAgregarATB(){
     rules: {
       dosis: {
         required: true,
-        maxlength: 10,
+        maxlength: 15,
       }
     },
     messages: {
       dosis: {
         required: 'Debe ingresar la dosis del antibiótico.',
-        maxlength: 'Debe ser un máximo de 10 caracteres.'
+        maxlength: 'Debe ser un máximo de 15 caracteres.'
       }
     },    
       submitHandler: function () {
@@ -552,7 +553,8 @@ function obtenerDatosAntibioticos(id_antibiotico){
 
   }); 
   //mostramos modal
-  $("#myModalCambioEstadoATB").modal("show");
+  
+  $('#myModalCambioEstadoATB').modal({backdrop: 'static', keyboard: false});
 }
 /*-----------------------------------------------------------------------------*/
 
@@ -594,7 +596,8 @@ function abrirModalDiagnosticarPaciente(id,id_tratamiento){
 
   }); 
   //mostramos modal
-  $("#myModalDiagnosticarPaciente").modal("show");
+  
+  $('#myModalDiagnosticarPaciente').modal({backdrop: 'static', keyboard: false});
 }
 
 function validarFormDiagnoticarPaciente(){
@@ -677,7 +680,8 @@ function abrirModalVerObservaciones(id,id_tratamiento,id_antibiotico){
     
   }); 
   //mostramos modal
-  $("#myModalMostrarObservaciones").modal("show");
+  
+  $('#myModalMostrarObservaciones').modal({backdrop: 'static', keyboard: false});
   //actualizarTablaActivos();//aca deberia ser actualizar tabla observaciones 
 }
 
@@ -732,7 +736,8 @@ function abrirModalVerRecetas(id,id_tratamiento,id_antibiotico){
     
   }); 
   //mostramos modal
-  $("#myModalVerRecetas").modal("show");
+  
+  $('#myModalVerRecetas').modal({backdrop: 'static', keyboard: false});
   //actualizarTablaActivos();//aca deberia ser actualizar tabla observaciones 
 }
 /*---------------------Ver Recetas---------------------------------*/
@@ -790,7 +795,7 @@ function abrirModalVerPdf(id,id_tratamiento){
     
   }); 
   //mostramos modal
-  $("#myModalMostrarPdf").modal("show");
+  $('#myModalMostrarPdf').modal({backdrop: 'static', keyboard: false});
   //actualizarTablaActivos();//aca deberia ser actualizar tabla observaciones 
 }
 /*------------------------------------------------------------------------------*/
@@ -839,7 +844,7 @@ function abrirModalObservacionMedico(id,id_tratamiento,id_antibiotico){
 
   }); 
   //mostramos modal
-  $("#myModalObservacionMedico").modal("show");
+  $('#myModalObservacionMedico').modal({backdrop: 'static', keyboard: false});
 }
 
 function validarFormObservacionMedico(){
@@ -959,7 +964,7 @@ function obtenerDatosUsuario(id){
 
   }); 
   //mostramos modal
-  $("#myModalActualizarUsuario").modal("show");
+  $('#myModalActualizarUsuario').modal({backdrop: 'static', keyboard: false});
 }
 
 function actualizarUsuario() {
@@ -1291,7 +1296,8 @@ function obtenerDatosRangoFechas(id, id_tratamiento, id_antibiotico){
     }
   });
   //mostramos modal
-  $("#myModalVerFechaTratamiento").modal("show");
+  
+  $('#myModalVerFechaTratamiento').modal({backdrop: 'static', keyboard: false});
 }  
 
 
@@ -1312,7 +1318,7 @@ function abrirModalSubirPdf(id,id_tratamiento){
 
   }); 
   //mostramos modal
-  $("#myModalSubirPdf").modal("show");
+  $('#myModalSubirPdf').modal({backdrop: 'static', keyboard: false});
 }
 
 
@@ -1746,3 +1752,24 @@ $(".fichero").on("change", function() {
 });
 
 /**/
+
+
+  let dropdown = $('#select_cei10');
+
+  dropdown.empty();
+
+  dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+  dropdown.prop('selectedIndex', 0);
+
+  const url = 'https://raw.githubusercontent.com/cayasso/cie10/master/cie10-array.json';
+
+  // Populate dropdown with list of provinces
+  $.getJSON(url, function (data) {
+    $.each(data, function (key, entry) {
+      dropdown.append($('<option></option>').attr('value', entry.d).text(entry.c));
+    })
+  });
+
+
+
+
